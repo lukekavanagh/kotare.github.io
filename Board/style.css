@@ -1,0 +1,47 @@
+#board {
+  font-family: monospace;
+  background-color: lightpink;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.bubble {
+  position: absolute !important;
+  width: 160px;
+  height: 160px;
+  background-color: #A269DB;
+  box-shadow: -2px 2px 5px #555;
+  overflow: hidden;
+  border-radius: 50%; 
+}
+
+.bubble .header {
+  background-color: #c2c25b;
+  text-align: right;
+  padding: 2px;
+}
+
+.bubble .header:hover {
+  background-color: #a8a860;
+}
+
+.bubble .header a, .post-it .header a:visited {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.bubble .header a:hover {
+  color: #eee;
+}
+
+.bubble .content {
+  padding: 10px;
+  min-height: 70px;
+  outline: none;
+}
+
+.bubble .draggy {
+  height: 50px;
+}
