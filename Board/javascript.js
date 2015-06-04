@@ -24,11 +24,39 @@ $(function(){
 	});
 });
 
+$('#board').on("click", '.bubble', function(e) {
+  e.stopImmediatePropagation();
+});
+
 function renderBubble(bubble) {
 	$('#board').append(
 		"<div class='bubble'>" +
-		"<div class='header'></div>" +
-		"<div class='content'></div>"+"</div>")
+		"<div class='header'><a contenteditable='false'>X</a></div>" +
+		"<div class='content' contentEditable='true'></div>"+"<div class='footer'></div>"+"</div>")
 
 	$(".bubble:last ").offset({top: bubble.xOffset, left: bubble.yOffset});
-}
+	 $('.bubble:last').draggable({
+      handle: ".header"
+    });
+    $('.bubble:last').resizable();
+    $('.bubble:last .header').append(bubble.header);
+    $('.bubble:last .content').append(bubble.content);
+
+    $(function(){
+      $('a')
+      //.button()
+      .click(function(event){
+        event.stopImmediatePropagation();
+        $(this).parent().parent().remove();
+      });
+  });
+
+// var div = $(".bubble");
+// var span = $("span");
+
+// span.width(Math.sqrt(span.width() * span.height()));
+// span.width(Math.sqrt(span.width() * span.height()));
+// div.width(Math.sqrt(2) * span.width());
+// div.height(div.width());
+
+};
