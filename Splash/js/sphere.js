@@ -1,42 +1,4 @@
-<!DOCTYPE html>
 
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>Sphere</title>
-  <link rel="stylesheet" type="text/css" href="css/splash.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="js/nav.js"></script>
-  <style>
-    body {
-      text-align: center;
-      color: white;
-      background-color: black;
-    }
-
-    canvas { 
-      width: 100%; 
-      height: 100%;ls
-    }
-  </style>
-</head>
-
-<body>
-
-<nav>
-  <a href="" id="menuToggle" title="show menu">
-    <span class="navClosed"><i>show menu</i></span>
-  </a>
-  <a href="#" title="Item 1">Item 1</a> 
-  <a href="#" title="Item 2">Item 2</a>
-  <a href="#" title="Item 3">Item 3</a>
-  <a href="#" title="Item 3">Item 4</a>
-</nav>
-
- <!--  <h1>Liquid Three.js Sphere</h1>
-  <button id="startButton">Start</button> -->
-  <script src="js/Three.js"></script> <!-- Get the latest version of the Three.js library. -->
-  <script>
     var bitmap = new Image();
     bitmap.src = 'images/bluebrain.jpg'; // Pre-load the bitmap, in conjunction with the Start button, to avoid any potential THREE.ImageUtils.loadTexture async issues.
     bitmap.onerror = function () {
@@ -75,6 +37,3 @@
     // document.getElementById('startButton').addEventListener('click', function () {
       render(); // Start the rendering of the animation frames.
     // }, false);
-  </script>
-</body>
-</html>
