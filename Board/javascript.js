@@ -36,7 +36,7 @@ $(document).ready(function() {
   function renderBubble(bubble) {
   	$('#board').append(
   		"<div class='bubble' id=" + bubble.bubbleId + ">" +
-  		"<div class='header'> <a class='delete' contenteditable='false'>X </a> </div>" +
+  		"<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'>+</a> </div>" +
   		"<div class='content' contentEditable='true'></div>"+
       "<div class='footer'>" +
       "<a class='scrollUp' href='#'> &#9650 </a>" +
