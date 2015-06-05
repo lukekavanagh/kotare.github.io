@@ -6,8 +6,10 @@
   position: relative;
 }
 
+
+
 .bubble {
-  position: absolute !important;
+  position: relative;
   width: 160px;
   height: 160px;
   background-color: #A269DB;
@@ -17,16 +19,23 @@
 }
 
 .bubble .header {
-  background-color: #c2c25b;
+  background-color: #613f83;
   text-align: right;
   padding: 2px;
+  min-height: 20px;
 }
 
 .bubble .header:hover {
-  background-color: #a8a860;
+  background-color: #312042;
+  color: white;
 }
 
-.bubble .header a, .post-it .header a:visited {
+/*.bubble .header a{
+    margin-left: auto;
+    margin-right: auto;
+}*/
+
+.bubble .header a, .bubble .header a:visited {
   text-decoration: none;
   color: black;
   font-weight: bold;
@@ -37,11 +46,22 @@
 }
 
 .bubble .content {
-  padding: 10px;
-  min-height: 70px;
+  padding: 20px;
+  height: 70px;
   outline: none;
+  overflow: hidden;
 }
 
-.bubble .draggy {
-  height: 50px;
+.bubble .footer {
+  background-color: #613f83;
+  text-align: center;
+  padding: 2px;
+  margin-top: -10px;
+  min-height: 20px;
+  vertical-align: bottom;
+  position: absolute;
+  bottom: 0px;
+  min-width: 100%;
 }
+
+
