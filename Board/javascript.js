@@ -22,11 +22,17 @@ $(document).ready(function() {
   };
 
   $(function(){
-  	$("#board").on("click", function(e){
+  	$("#board").on("click", boardClick);
+   
+    function boardClick(e){
       var randId = guid();
-  		renderBubble(new Bubble(e.pageY, e.pageX, randId));
-  	});
+      var bubble = new Bubble(e.pageY, e.pageX, randId);
+      renderBubble(bubble);
+      //Board.bubbles.push(bubble);
+
+    }
   });
+
 
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
