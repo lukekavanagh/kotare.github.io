@@ -22,7 +22,6 @@ $(document).ready(function() {
   };
 
   $(function(){
-  	new Board('#board');
   	$("#board").on("click", function(e){
       var randId = guid();
   		renderBubble(new Bubble(e.pageY, e.pageX, randId));
