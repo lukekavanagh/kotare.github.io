@@ -10,17 +10,19 @@ var Board = function( selector ) {
 };
 
 
-function Bubble (x,y){
+function Bubble (x,y, id){
 	this.header ="this is the header";
 	this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
 	this.xOffset=x;
 	this.yOffset=y;
+  this.id=id;
 };
 
 $(function(){
 	new Board('#board');
 	$("#board").on("click", function(e){
-		renderBubble(new Bubble(e.pageY, e.pageX));
+    var id= Math.floor((Math.random() * 10000)+1);
+		renderBubble(new Bubble(e.pageY, e.pageX, id));
 	});
 });
 
@@ -28,7 +30,10 @@ $('#board').on("click", '.bubble', function(e) {
   e.stopImmediatePropagation();
 });
 
+
+
 function renderBubble(bubble) {
+
 	$('#board').append(
 		"<div class='bubble'>" +
 		"<div class='header'><a class='delete' contenteditable='false'>X</a></div>" +
@@ -77,7 +82,8 @@ $("#scrollUp").bind("click", function(event) {
     // Animates the scrollTop property by the specified
       console.log("i have been clicked");
       console.log($(".content"));
-    $(".content", this).scrollTop(-25);
+      console.log(this);
+    $(this).parent().prev(".content").scrollTop(-25);
 }).bind("mouseover", function(event) {
     scrolling = true;
     scrollContent("up");
