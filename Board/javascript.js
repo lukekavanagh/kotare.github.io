@@ -1,9 +1,9 @@
 $(document).ready(function() {
-   var Board = function( selector ) {
-    var $elem = $( selector );
-    function initialize() {
-    };
-    initialize();
+
+  var Board = {
+    _id: "",
+    connections: [],
+    bubbles: [],
   };
 
   function Bubble (x,y, randId){
