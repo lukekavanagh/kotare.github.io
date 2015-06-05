@@ -7,16 +7,24 @@ $(document).ready(function() {
   };
 
   function Bubble (x,y, randId){
+    this.bubbleId=randId;
+    this.heading = "";
   	this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
-  	this.xOffset=x;
-  	this.yOffset=y;
-    this.id=randId;
+    this._id = "";
+    this.size = {
+  	  left: x,
+  	  top: y
+    };
+    this.location = {
+  	  left: x,
+  	  top: y
+    };
   };
 
   $(function(){
   	new Board('#board');
   	$("#board").on("click", function(e){
-      var randId= Math.floor((Math.random() * 10000)+1);
+      var randId = guid();
   		renderBubble(new Bubble(e.pageY, e.pageX, randId));
   	});
   });
@@ -27,7 +35,7 @@ $(document).ready(function() {
 
   function renderBubble(bubble) {
   	$('#board').append(
-  		"<div class='bubble' id=" + bubble.id + ">" +
+  		"<div class='bubble' id=" + bubble.bubbleId + ">" +
   		"<div class='header'> <a class='delete' contenteditable='false'>X </a> </div>" +
   		"<div class='content' contentEditable='true'></div>"+
       "<div class='footer'>" +
@@ -35,7 +43,7 @@ $(document).ready(function() {
       "<a class='scrollDown' href='#'> &#9660 </a>" +
       "</div></div>")
 
-  	$(".bubble:last ").offset({top: bubble.xOffset, left: bubble.yOffset});
+  	$(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
   	$('.bubble:last').draggable({
       handle: ".header"
     });
@@ -67,3 +75,13 @@ $(document).ready(function() {
     });
   };
 });
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
