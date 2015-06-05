@@ -1,9 +1,9 @@
 $(document).ready(function() {
-   var Board = function( selector ) {
-    var $elem = $( selector );
-    function initialize() {
-    };
-    initialize();
+
+  var Board = {
+    _id: "",
+    connections: [],
+    bubbles: [],
   };
 
   function Bubble (x,y, randId){
@@ -22,7 +22,6 @@ $(document).ready(function() {
   };
 
   $(function(){
-  	new Board('#board');
   	$("#board").on("click", function(e){
       var randId = guid();
   		renderBubble(new Bubble(e.pageY, e.pageX, randId));
