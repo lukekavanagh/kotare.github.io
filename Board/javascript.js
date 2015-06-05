@@ -1,118 +1,75 @@
-var Board = function( selector ) {
-
-  var $elem = $( selector );
-  
-  function initialize() {
-   
+$(document).ready(function() {
+   var Board = function( selector ) {
+    var $elem = $( selector );
+    function initialize() {
+    };
+    initialize();
   };
 
-  initialize();
-};
+  function Bubble (x,y, randId){
+  	this.header ="this is the header";
+  	this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
+  	this.xOffset=x;
+  	this.yOffset=y;
+    this.id=randId;
+  };
 
-
-function Bubble (x,y, id){
-	this.header ="this is the header";
-	this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
-	this.xOffset=x;
-	this.yOffset=y;
-  this.id=id;
-};
-
-$(function(){
-	new Board('#board');
-	$("#board").on("click", function(e){
-    var id= Math.floor((Math.random() * 10000)+1);
-		renderBubble(new Bubble(e.pageY, e.pageX, id));
-	});
-});
-
-$('#board').on("click", '.bubble', function(e) {
-  e.stopImmediatePropagation();
-});
-
-
-
-function renderBubble(bubble) {
-
-	$('#board').append(
-		"<div class='bubble'>" +
-		"<div class='header'><a class='delete' contenteditable='false'>X</a></div>" +
-		"<div class='content' contentEditable='true'></div>"+
-    "<div class='footer'>" +
-      "<a id='scrollUp' href='#'>up</a>" +
-      "<a id='scrollDown' href='#'>down</a>" + 
-    "</div>"
-+"</div>")
-
-	$(".bubble:last ").offset({top: bubble.xOffset, left: bubble.yOffset});
-	 $('.bubble:last').draggable({
-      handle: ".header"
-    });
-    $('.bubble:last').resizable();
-    $('.bubble:last .header').append(bubble.header);
-    $('.bubble:last .content').append(bubble.content);
-
-    $(function(){
-      $('.delete')
-      //.button()
-      .click(function(event){
-        event.stopImmediatePropagation();
-        $(this).parent().parent().remove();
-      });
-
-
+  $(function(){
+  	new Board('#board');
+  	$("#board").on("click", function(e){
+      var randId= Math.floor((Math.random() * 10000)+1);
+  		renderBubble(new Bubble(e.pageY, e.pageX, randId));
+  	});
   });
 
-// var div = $(".bubble");
-// var span = $("span");
-
-// span.width(Math.sqrt(span.width() * span.height()));
-// span.width(Math.sqrt(span.width() * span.height()));
-// div.width(Math.sqrt(2) * span.width());
-// div.height(div.width());
+  $('#board').on("click", '.bubble', function(e) {
+    e.stopImmediatePropagation();
+  });
 
 
+  function renderBubble(bubble) {
+  	$('#board').append(
+  		"<div class='bubble' id=" + bubble.id + ">" +
+  		"<div class='header'><a class='delete' contenteditable='false'>X</a></div>" +
+  		"<div class='content' contentEditable='true'></div>"+
+      "<div class='footer'>" +
+        "<a class='scrollUp' href='#'>up</a>" +
+        "<a class='scrollDown' href='#'>down</a>" +
+      "</div>"
+  +"</div>")
+
+  	$(".bubble:last ").offset({top: bubble.xOffset, left: bubble.yOffset});
+  	 $('.bubble:last').draggable({
+        handle: ".header"
+      });
+      $('.bubble:last').resizable();
+      $('.bubble:last .header').append(bubble.header);
+      $('.bubble:last .content').append(bubble.content);
 
 
-var scrolling = false;
-
-// Wire up events for the 'scrollUp' link:
-$("#scrollUp").bind("click", function(event) {
-    event.preventDefault();
-    // Animates the scrollTop property by the specified
-      console.log("i have been clicked");
-      console.log($(".content"));
-      console.log(this);
-    $(this).parent().prev(".content").scrollTop(-25);
-}).bind("mouseover", function(event) {
-    scrolling = true;
-    scrollContent("up");
-}).bind("mouseout", function(event) {
-    scrolling = false;
-});
-
-
-$("#scrollDown").bind("click", function(event) {
-    event.preventDefault();
-    $(".content").animate({
-        scrollTop: "+= 25px"
+      $(function(){
+        $('.delete')
+        //.button()
+        .click(function(event){
+          event.stopImmediatePropagation();
+          $(this).parent().parent().remove();
+        });
     });
-}).bind("mouseover", function(event) {
-    scrolling = true;
-    scrollContent("down");
-}).bind("mouseout", function(event) {
-    scrolling = false;
+
+      $(".scrollUp").bind("click", function(event) {
+          event.preventDefault();
+          var currentBubbleId = ($(this).parent().parent().attr('id'));
+          console.log(currentBubbleId);
+          console.log( $("#" + currentBubbleId).find(".content"));
+          var scrollHeight = $("#" + currentBubbleId).find(".content").scrollTop();
+          $("#" + currentBubbleId).find(".content").scrollTop(scrollHeight - 25);
+      })
+
+      $(".scrollDown").bind("click", function(event) {
+          event.preventDefault();
+          var currentBubbleId = ($(this).parent().parent().attr('id'));
+          var scrollHeight = $("#" + currentBubbleId).find(".content").scrollTop();
+          $("#" + currentBubbleId).find(".content").scrollTop(scrollHeight + 25);
+      });
+  };
 });
-
-function scrollContent(direction) {
-    var amount = (direction === "up" ? "-=1px" : "+=1px");
-    $(".content").animate({
-        scrollTop: amount
-    }, 1, function() {
-        if (scrolling) {
-            scrollContent(direction);
-        }
-    });
-}
-
-};
