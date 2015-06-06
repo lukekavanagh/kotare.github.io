@@ -36,7 +36,7 @@ $(document).ready(function() {
   function renderBubble(bubble) {
   	$('#board').append(
   		"<div class='bubble' id=" + bubble.bubbleId + ">" +
-  		"<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'>+</a> </div>" +
+  		"<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'> +</a> </div>" +
   		"<div class='content' contentEditable='true'></div>"+
       "<div class='footer'>" +
       "<a class='scrollUp' href='#'> &#9650 </a>" +
@@ -60,6 +60,30 @@ $(document).ready(function() {
       });
     });
 
+    function addConnection(){
+      linkingInProgress = false;
+      var $firstBubble;
+      var $secondBubble;
+
+      $('.link').click( function(e) {
+        e.stopImmediatePropagation();
+        if (linkingInProgress){
+          $secondBubble = $(this).parent().parent().attr('id');
+          renderConnections($firstBubble, $secondBubble);
+          linkingInProgress = false;
+          console.log("Second bubble:" + $secondBubble);
+          console.log("linking" + linkingInProgress);
+        }
+        else {
+          $firstBubble = $(this).parent().parent().attr('id');
+          linkingInProgress = true;
+          console.log("First bubble:" + $firstBubble);
+          console.log("linking" + linkingInProgress);
+        };
+      });
+    };
+    addConnection();
+
     $(".scrollUp").bind("click", function(event) {
       event.preventDefault();
       var currentBubbleId = ($(this).parent().parent().attr('id'));
@@ -74,7 +98,20 @@ $(document).ready(function() {
       $("#" + currentBubbleId).find(".content").scrollTop(scrollHeight + 25);
     });
   };
+
+  function renderConnections(firstBubbleId, secondBubbleId) {
+    var mySVG = $('body').connect();
+    mySVG.drawLine({
+      left_node:'#' + firstBubbleId,
+      right_node:'#' + secondBubbleId,
+    });
+    console.log (firstBubbleId);
+    console.log('nodes: ' + left_node);
+    console.log(right_node);
+  };
+
 });
+
 
 function guid() {
   function s4() {
