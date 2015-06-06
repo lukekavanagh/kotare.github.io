@@ -4,16 +4,18 @@ var currentConnection = {
   endBubbleId: ""
 };
 
-$(document).ready(function() {
+var board;
 
-  var Board = {
+$(document).ready(function() {
+  console.log("hi");
+  board = {
     _id: "",
     connections: [],
     bubbles: [],
   };
 
 
-  $("#board").on("click", boardClick);
+  $("#board").on("click", createBubble);
 
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
@@ -31,11 +33,11 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 
-function boardClick(e){
+function createBubble(e){
   var randId = guid();
   var bubble = new Bubble(e.pageY, e.pageX, randId);
   renderBubble(bubble);
-  //Board.bubbles.push(bubble);
+  board.bubbles.push(bubble);
 
 }
 
@@ -91,7 +93,7 @@ function renderBubble(bubble) {
       currentConnection.endBubbleId = $(this).parent().parent().attr('id');
       renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId);
       connectionInProgress = false;
-      // TODO: put copy of currentLink in Board.connections,
+      // TODO: put copy of currentLink in board.connections,
       // and clear values in currentConnection
       console.log("End bubble:" + currentConnection.endBubbleId);
       console.log("Connecting: " + connectionInProgress);
