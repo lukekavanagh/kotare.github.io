@@ -1,3 +1,164 @@
+.os-phrases h2 {
+  font-family: 'Dosis', 'Lato', sans-serif;
+  font-size: 70px;
+  font-weight: 200;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  letter-spacing: 14px;
+  text-align: center;
+}
+
+.os-phrases h2,
+.os-phrases h2 > span {
+  height: 100%;
+  /* Centering with flexbox */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px
+    display: inline-block;
+    perspective: 1000px;
+    transform-origin: 50% 50%;
+    display: inline-block;
+    perspective: 1000px;
+    transform-origin: 50% 50%;
+}
+.os-phrases h2 > span > span > span {
+  display: inline-block;
+  color: hsla(0,0%,0%,0);
+  transform-style: preserve-3d;
+  transform: translate3d(0,0,0);
+  animation: OpeningSequence 5.2s linear forwards;
+}
+
+.os-phrases h2:nth-child(2) > span > span > span {
+  animation-delay: 5s;
+}
+
+.os-phrases h2:nth-child(3) > span > span > span {
+  animation-delay: 10s;
+}
+
+.os-phrases h2:nth-child(4) > span > span > span {
+  animation-delay: 15s;
+}
+
+.os-phrases h2:nth-child(5) > span > span > span {
+  font-size: 150px;
+  animation-delay: 21s;
+  animation-duration: 8s;
+}
+
+.os-phrases h2:nth-child(6) > span > span > span {
+  animation-delay: 30s;
+}
+
+.os-phrases h2:nth-child(7) > span > span > span {
+  animation-delay: 34s;
+}
+
+
+@keyframes OpeningSequence {
+  0% {
+    text-shadow: 0 0 50px #fff;
+    letter-spacing: 80px;
+    opacity: 0.2;
+    transform: rotateY(-90deg);
+  }
+  50% {
+    text-shadow: 0 0 1px #fff;
+    letter-spacing: 14px;
+    opacity: 0.8;
+    transform: rotateY(0deg);
+  }
+  85% {
+    text-shadow: 0 0 1px #fff;
+    opacity: 0.8;
+    transform: rotateY(0deg) translateZ(100px);
+  }
+  100% {
+    text-shadow: 0 0 10px #fff;
+    opacity: 0;
+    transform: translateZ(130px);
+    pointer-events: none;
+  }
+}
+
+@-webkit-keyframes fade-in{
+    from{
+        opacity:1;
+        top:0px;
+    }
+    to{
+        opacity:0;
+        top:-5px;
+    }
+}
+
+
+.os-phrases h2:nth-child(8) > span > span > span {
+  font-size: 30px;
+  animation: FadeIn 4s linear 40s forwards;
+}
+
+@keyframes FadeIn { 
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 50px #fff;
+  }
+  100% {
+    opacity: 0.8;
+    text-shadow: 0 0 1px #fff;
+  }
+}
+
+.os-phrases h2:first-child .word3,
+.os-phrases h2:nth-child(2) .word2,
+.os-phrases h2:nth-child(4) .word2 {
+  font-weight: 600;
+}
+
+.text-animated-one{
+    display:inline;
+    position:relative;
+    top:0px;
+    -webkit-animation:fade-in 1s infinite;
+
+}
+
+.text-animated-two{
+    opacity:0;
+    display:inline;
+    position:relative;
+    margin-left:-56px;
+    -webkit-animation:fade-in 1s infinite;
+    -webkit-animation-delay:0.5s;
+}
+
+.text-animated-three{
+    display:inline;
+    position:relative;
+    top:0px;
+    -webkit-animation:fade-in 1s infinite;
+    -webkit-animation-delay:0.10s;
+
+}
+
+.aggettivi {
+    display:inline;
+    width:100px;
+    height:100px;
+
+
+}
 
 html, body {
   font-family: 'Open Sans', sans-serif;
@@ -5,7 +166,27 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  text-align: center;
+  color: white;
+  background-color: black;
+ }
+
+canvas { 
+  width: 100%; 
+  height: 100%;ls
 }
+
+
+body {
+    text-align: center;
+    color: white;
+    background-color: black;
+  }
+
+  canvas { 
+    width: 100%; 
+    height: 100%;ls
+  }
 
 
 a {
@@ -18,33 +199,6 @@ a i {
   color: transparent;
 }
 
-a.image1:hover {
-  content : url("http://www.autostraddle.com/wp-content/uploads/2014/06/goldfish-640x360.jpg");
-  display: block;
-  position:fixed;
-
-
-}
-a.image2:hover {
-  content : url("http://placecage.com/100/100");
-  display: block;
-  position:fixed;
-
-}
-
-a.image3:hover {
-  content : url("http://www.autostraddle.com/wp-content/uploads/2014/06/goldfish-640x360.jpg");
-  display: block;
-  position:fixed;
-
-}
-
-a.image4:hover {
-  content : url("http://placecage.com/100/100");
-  display: block;
-  position:fixed;
-
-}
 
 nav {
   background-color: rgba(0, 0, 0, 0.6);
