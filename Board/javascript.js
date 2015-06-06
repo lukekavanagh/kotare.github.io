@@ -1,3 +1,9 @@
+var connectionInProgress = false;
+var currentConnection = {
+  startBubbleId: "",
+  endBubbleId: ""
+};
+
 $(document).ready(function() {
 
   var Board = {
@@ -8,24 +14,19 @@ $(document).ready(function() {
 
   function Bubble (x,y, randId){
     this.bubbleId=randId;
-    this.heading = "";
-  	this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
+    this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
     this._id = "";
     this.size = {
-  	  left: x,
-  	  top: y
+      left: x,
+      top: y
     };
     this.location = {
-  	  left: x,
-  	  top: y
+      left: x,
+      top: y
     };
   };
 
- 
   $("#board").on("click", boardClick);
-
-
-
 
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
@@ -48,7 +49,6 @@ $(document).ready(function() {
     $('.bubble:last').resizable();
     $('.bubble:last .content').append(bubble.content);
 
-
     $(function(){
       $('.delete')
       //.button()
@@ -56,6 +56,25 @@ $(document).ready(function() {
         event.stopImmediatePropagation();
         $(this).parent().parent().remove();
       });
+    });
+
+    $('.link').click( function(e) {
+      e.stopImmediatePropagation();
+      if (!connectionInProgress){
+        currentConnection.startBubbleId = $(this).parent().parent().attr('id');
+        connectionInProgress = true;
+        console.log("Start bubble:" + currentConnection.startBubbleId);
+        console.log("Connecting: " + connectionInProgress);
+      }
+      else {
+        currentConnection.endBubbleId = $(this).parent().parent().attr('id');
+        renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId);
+        connectionInProgress = false;
+        // TODO: put copy of currentLink in Board.connections,
+        // and clear values in currentConnection
+        console.log("End bubble:" + currentConnection.endBubbleId);
+        console.log("Connecting: " + connectionInProgress);
+      }
     });
 
     $(".scrollUp").bind("click", function(event) {
@@ -91,3 +110,4 @@ function guid() {
     //Board.bubbles.push(bubble);
 
   }
+
