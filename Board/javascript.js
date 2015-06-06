@@ -92,14 +92,6 @@ $(document).ready(function() {
   };
 });
 
-function renderConnections(firstBubbleId, secondBubbleId) {
-  var mySVG = $('body').connect();
-  mySVG.drawLine({
-    left_node:'#' + firstBubbleId,
-    right_node:'#' + secondBubbleId,
-  });
-}
-
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
