@@ -1,55 +1,52 @@
+var connectionInProgress = false;
+var currentConnection = {
+  startBubbleId: "",
+  endBubbleId: ""
+};
+
 $(document).ready(function() {
-   var Board = function( selector ) {
-    var $elem = $( selector );
-    function initialize() {
-    };
-    initialize();
+
+  var Board = {
+    _id: "",
+    connections: [],
+    bubbles: [],
   };
 
   function Bubble (x,y, randId){
     this.bubbleId=randId;
-    this.heading = "";
-  	this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
+    this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
     this._id = "";
     this.size = {
-  	  left: x,
-  	  top: y
+      left: x,
+      top: y
     };
     this.location = {
-  	  left: x,
-  	  top: y
+      left: x,
+      top: y
     };
   };
 
-  $(function(){
-  	new Board('#board');
-  	$("#board").on("click", function(e){
-      var randId = guid();
-  		renderBubble(new Bubble(e.pageY, e.pageX, randId));
-  	});
-  });
+  $("#board").on("click", boardClick);
 
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
   });
 
   function renderBubble(bubble) {
-  	$('#board').append(
-  		"<div class='bubble' id=" + bubble.bubbleId + ">" +
-  		"<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'> +</a> </div>" +
-  		"<div class='content' contentEditable='true'></div>"+
+    $('#board').append(
+      "<div class='bubble' id=" + bubble.bubbleId + ">" +
+      "<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'>+</a> </div>" +
+      "<div class='content' contentEditable='true'></div>"+
       "<div class='footer'>" +
       "<a class='scrollUp' href='#'> &#9650 </a>" +
       "<a class='scrollDown' href='#'> &#9660 </a>" +
       "</div></div>")
-
-  	$(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
-  	$('.bubble:last').draggable({
+    $(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
+    $('.bubble:last').draggable({
       handle: ".header"
     });
     $('.bubble:last').resizable();
     $('.bubble:last .content').append(bubble.content);
-
 
     $(function(){
       $('.delete')
@@ -60,29 +57,24 @@ $(document).ready(function() {
       });
     });
 
-    function addConnection(){
-      linkingInProgress = false;
-      var $firstBubble;
-      var $secondBubble;
-
-      $('.link').click( function(e) {
-        e.stopImmediatePropagation();
-        if (linkingInProgress){
-          $secondBubble = $(this).parent().parent().attr('id');
-          renderConnections($firstBubble, $secondBubble);
-          linkingInProgress = false;
-          console.log("Second bubble:" + $secondBubble);
-          console.log("linking" + linkingInProgress);
-        }
-        else {
-          $firstBubble = $(this).parent().parent().attr('id');
-          linkingInProgress = true;
-          console.log("First bubble:" + $firstBubble);
-          console.log("linking" + linkingInProgress);
-        };
-      });
-    };
-    addConnection();
+    $('.link').click( function(e) {
+      e.stopImmediatePropagation();
+      if (!connectionInProgress){
+        currentConnection.startBubbleId = $(this).parent().parent().attr('id');
+        connectionInProgress = true;
+        console.log("Start bubble:" + currentConnection.startBubbleId);
+        console.log("Connecting: " + connectionInProgress);
+      }
+      else {
+        currentConnection.endBubbleId = $(this).parent().parent().attr('id');
+        renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId);
+        connectionInProgress = false;
+        // TODO: put copy of currentLink in Board.connections,
+        // and clear values in currentConnection
+        console.log("End bubble:" + currentConnection.endBubbleId);
+        console.log("Connecting: " + connectionInProgress);
+      }
+    });
 
     $(".scrollUp").bind("click", function(event) {
       event.preventDefault();
@@ -98,20 +90,15 @@ $(document).ready(function() {
       $("#" + currentBubbleId).find(".content").scrollTop(scrollHeight + 25);
     });
   };
-
-  function renderConnections(firstBubbleId, secondBubbleId) {
-    var mySVG = $('body').connect();
-    mySVG.drawLine({
-      left_node:'#' + firstBubbleId,
-      right_node:'#' + secondBubbleId,
-    });
-    console.log (firstBubbleId);
-    console.log('nodes: ' + left_node);
-    console.log(right_node);
-  };
-
 });
 
+function renderConnections(firstBubbleId, secondBubbleId) {
+  var mySVG = $('body').connect();
+  mySVG.drawLine({
+    left_node:'#' + firstBubbleId,
+    right_node:'#' + secondBubbleId,
+  });
+}
 
 function guid() {
   function s4() {
@@ -122,3 +109,10 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
 }
+
+  function boardClick(e){
+    var randId = guid();
+    var bubble = new Bubble(e.pageY, e.pageX, randId);
+    renderBubble(bubble);
+    //Board.bubbles.push(bubble);
+  }
