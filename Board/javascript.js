@@ -41,6 +41,7 @@ $(document).ready(function() {
       "<a class='scrollUp' href='#'> &#9650 </a>" +
       "<a class='scrollDown' href='#'> &#9660 </a>" +
       "</div></div>")
+
     $(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
     $('.bubble:last').draggable({
       handle: ".header"
@@ -107,4 +108,6 @@ function guid() {
     var bubble = new Bubble(e.pageY, e.pageX, randId);
     renderBubble(bubble);
     //Board.bubbles.push(bubble);
+
   }
+
