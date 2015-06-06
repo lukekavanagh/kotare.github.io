@@ -21,17 +21,10 @@ $(document).ready(function() {
     };
   };
 
-  $(function(){
-  	$("#board").on("click", boardClick);
-   
-    function boardClick(e){
-      var randId = guid();
-      var bubble = new Bubble(e.pageY, e.pageX, randId);
-      renderBubble(bubble);
-      //Board.bubbles.push(bubble);
+ 
+  $("#board").on("click", boardClick);
 
-    }
-  });
+
 
 
   $('#board').on("click", '.bubble', function(e) {
@@ -39,17 +32,17 @@ $(document).ready(function() {
   });
 
   function renderBubble(bubble) {
-  	$('#board').append(
-  		"<div class='bubble' id=" + bubble.bubbleId + ">" +
-  		"<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'>+</a> </div>" +
-  		"<div class='content' contentEditable='true'></div>"+
+    $('#board').append(
+      "<div class='bubble' id=" + bubble.bubbleId + ">" +
+      "<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'>+</a> </div>" +
+      "<div class='content' contentEditable='true'></div>"+
       "<div class='footer'>" +
       "<a class='scrollUp' href='#'> &#9650 </a>" +
       "<a class='scrollDown' href='#'> &#9660 </a>" +
       "</div></div>")
 
-  	$(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
-  	$('.bubble:last').draggable({
+    $(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
+    $('.bubble:last').draggable({
       handle: ".header"
     });
     $('.bubble:last').resizable();
@@ -90,3 +83,11 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
 }
+
+  function boardClick(e){
+    var randId = guid();
+    var bubble = new Bubble(e.pageY, e.pageX, randId);
+    renderBubble(bubble);
+    //Board.bubbles.push(bubble);
+
+  }
