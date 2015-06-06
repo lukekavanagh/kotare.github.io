@@ -21,18 +21,8 @@ $(document).ready(function() {
 
 });
 
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
-}
-
 function createBubble(e){
-  var randId = guid();
+  var randId = helper.guid();
   var bubble = new Bubble(e.pageY, e.pageX, randId);
   renderBubble(bubble);
   board.bubbles.push(bubble);
