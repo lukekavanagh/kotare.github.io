@@ -5,13 +5,13 @@ var currentConnection = {
 };
 
 $(document).ready(function() {
-
+  this.mySVG = $('body').connect();
+  console.log(this.mySVG)
   var Board = {
     _id: "",
     connections: [],
     bubbles: [],
   };
-
 
   $("#board").on("click", boardClick);
 
@@ -89,7 +89,7 @@ function renderBubble(bubble) {
     }
     else {
       currentConnection.endBubbleId = $(this).parent().parent().attr('id');
-      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId);
+      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, document.mySVG);
       connectionInProgress = false;
       // TODO: put copy of currentLink in Board.connections,
       // and clear values in currentConnection
