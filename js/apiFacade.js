@@ -2,18 +2,31 @@ var ApiFacade = (function() {
 
   return {
 
-    getBoard: function() {
+		getBoard: function(boardId) {
       // this.response;
       $.ajax({
         async: false,
-        url: "https://crudbrain.herokuapp.com/api/v1/boards",
+        url: "https://crudbrain.herokuapp.com/api/v1/boards/" + boardId,
         // headers:
-        success: function(res) {
-          this.response = res;
+        success: function(data, textStatus, xhr){
+          console.log('data', data)
+          console.log('textStatus', textStatus)
+          console.log('xhr', xhr)
+          console.log('get got');
+          this.response = {
+            status: xhr.status,
+            board: data
+          }
         }.bind(this),
-        failure: function(res) {
-          console.log("Ajax get board failed");
-          console.log(res);
+        failure: function(data, textStatus, xhr){
+          console.log('data', data)
+          console.log('textStatus', textStatus)
+          console.log('xhr', xhr)
+          console.log("Ajax get board failed")
+          this.response = {
+            status: xhr.status,
+            err: '? find error in ajax response apiFacade.getBoard()'
+          };
         }.bind(this)
       })
       return this.response;

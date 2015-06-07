@@ -7,11 +7,18 @@ var board;
 
 $(document).ready(function() {
   this.mySVG = $('body').connect();
-  board = {
-    _id: "",
-    connections: [],
-    bubbles: [],
-  };
+
+  //oauth2 junk here...  
+  //get/post a board (board = ?)
+  response = ApiFacade.get({boardId: 10985132509})
+  if response.status ===
+
+    // board = ApiFacade.postBoard()
+  // {
+  //   _id: "",
+  //   connections: [],
+  //   bubbles: [],
+  // };
 
   $("#board").on("click", createBubble);
 
