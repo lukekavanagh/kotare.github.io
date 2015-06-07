@@ -21,7 +21,10 @@
 <body id="board">
 <button id="fb" class="login"></button>
 <script>
-  var access_token = null;
+  var fbUser = {
+    id: "",
+    access_token: ""
+  };
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -48,7 +51,12 @@
 
   document.getElementById('fb').addEventListener('click', function (e) {
     FB.login(function (response) {
-      
+      if (response.authResponse) {
+        console.log( getAccessToken(response));
+        console.log("::: ", access_token);
+      } else {
+        console.log("No authResponse");
+      }
     }, {scope: 'public_profile,email'});  
   });
 </script>

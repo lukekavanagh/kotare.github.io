@@ -1,11 +1,11 @@
 .login {
-  background-image: url("../images/facebook_60x60x.png");
-  width: 150px;
-  height: 150px;
+  background-image: url("../images/facebook_60x60px.png");
+  width: 60px;
+  height: 60px;
 }
 
 .logout {
-  background-image: url("../images/facebook_60x60x.png");
-  width: 150px;
-  height: 150px;
+  background-image: url("../images/facebook_60x60px.png");
+  width: 60px;
+  height: 60px;
 }
