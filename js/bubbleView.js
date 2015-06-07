@@ -24,6 +24,10 @@ function renderBubble(bubble) {
     });
   });
 
+  $('.header').click( function(e) {
+    $(window).resize();
+  })
+
   $('.link').click( function(e) {
     e.stopImmediatePropagation();
     if (!connectionInProgress){
