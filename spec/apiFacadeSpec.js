@@ -9,9 +9,11 @@ describe("ApiFacade", function() {
     })
   })
   describe("getboard()", function(){
-    it("returns a bloody great board object", function(){
-      var board = ApiFacade.getBoard();
-      expect(board.message.length).toBeGreaterThan(6);
+    it("returns statusCode = 200", function(){
+      var boardId = "kljafds987ahu"
+      var response = ApiFacade.getBoard(boardId);
+      expect(response.status).toEqual(200);
     })
+    it("returns bloody great board object")
   })
 });
