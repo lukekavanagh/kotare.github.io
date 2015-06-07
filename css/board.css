@@ -1,12 +1,10 @@
 #board {
   font-family: monospace;
-  background-color: lightpink;
+  background-color: #C0C0CA;
   margin: 0;
   padding: 0;
   position: relative;
 }
-
-
 
 .bubble {
   position: absolute;
