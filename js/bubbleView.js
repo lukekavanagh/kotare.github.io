@@ -15,6 +15,7 @@ function renderBubble(bubble) {
   $('.bubble:last').resizable();
   $('.bubble:last .content').append(bubble.content);
 
+
   $(function(){
     $('.delete')
     .click(function(event){
@@ -22,6 +23,10 @@ function renderBubble(bubble) {
       $(this).parent().parent().remove();
     });
   });
+
+  $('.header').click( function(e) {
+    $(window).resize();
+  })
 
   $('.link').click( function(e) {
     e.stopImmediatePropagation();

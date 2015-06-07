@@ -7,11 +7,11 @@ var board;
 
 $(document).ready(function() {
   this.mySVG = $('body').connect();
-  board = {
-    _id: "",
-    connections: [],
-    bubbles: [],
-  };
+
+  //oauth2 junk here...  
+
+  // New board
+  board = ApiFacade.postBoard();
 
   $("#board").on("click", createBubble);
 
@@ -19,6 +19,10 @@ $(document).ready(function() {
     e.stopImmediatePropagation();
   });
 
+  // Persist to db
+  $('#board').on('mouseup', function () {
+    var putResponse = ApiFacade.putBoard(board);
+  });
 });
 
 function createBubble(e){
@@ -26,6 +30,7 @@ function createBubble(e){
   var bubble = new Bubble(e.pageY, e.pageX, randId);
   renderBubble(bubble);
   board.bubbles.push(bubble);
+  console.log("Bubbles: ", board.bubbles);
 }
 
 

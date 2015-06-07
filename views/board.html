@@ -3,21 +3,26 @@
   <head>
     <title>Mind Map</title>
     <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="./../css/board.css" type="text/css">
+    <link rel="stylesheet" href="../css/board.css" type="text/css">
+    <link rel="stylesheet" href="../css/facebook.css" type="text/css">
 
   	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/1.1.0/svg.min.js"></script>
-    <script type="text/javascript" src="./../lib/jquery.connectingLine.js"></script>
+    <script type="text/javascript" src="../lib/jquery.connectingLine.js"></script>
 
-    <script src="./../js/facebook.js"></script>
-    <script src="./../js/helper.js"></script>
-    <script src="./../js/bubbleView.js"></script>
-    <script src="./../js/bubble.js"></script>
-    <script src="./../js/connectionView.js"></script>
-    <script src="./../js/board.js"></script>
+    <script src="../js/apiFacade.js"></script>
+    <script src="../js/facebook.js"></script>
+    <script src="../js/helper.js"></script>
+    <script src="../js/bubbleView.js"></script>
+    <script src="../js/bubble.js"></script>
+    <script src="../js/connectionView.js"></script>
+    <script src="../js/board.js"></script>
 <body id="board">
+<button id="fb" class="login"></button>
 <script>
+  var access_token = null;
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1642565209312684',
@@ -28,18 +33,24 @@
     });
 
     FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
+      access_token = getAccessToken(response);
     });
   };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "http://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  document.getElementById('fb').addEventListener('click', function (e) {
+    FB.login(function (response) {
+      
+    }, {scope: 'public_profile,email'});  
+  });
 </script>
-<script>
-document.getElementByClass('fbLogin').addEventListener('click', function (e) {
-  FB.login(function (response) {
-    
-  }, {scope: 'public_profile,email'});  
-});
-</script>
-<button class="fbLogin"></button>
-<!--<fb:login-button autologoutlink="true" size="large" scope="public_profile,email" onlogin="getAccessToken();"></fb:login-button>-->
 </body>
 </html>
