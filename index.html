@@ -16,6 +16,8 @@
       width: 100%; 
       height: 100%;ls
     }
+
+
   </style>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -43,6 +45,7 @@
   };
 </script>
 
+<fb:login-button autologoutlink="true" size="large" scope="public_profile,email" onlogin="getAccessToken();"></fb:login-button>
 <nav>
   <a href="" id="menuToggle" title="show menu">
     <span class="navClosed"><i>show menu</i></span>
@@ -105,7 +108,5 @@
     });
   </script>
 
-<!--<fb:login-button autologoutlink="true" scope="public_profile,email" onlogin="getAccessToken();">-->
-<!--</fb:login-button>-->
 </body>
 </html>
