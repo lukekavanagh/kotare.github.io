@@ -4,32 +4,24 @@ var ApiFacade = (function() {
 
 		getBoard: function(boardId) {
       // this.response;
-      console.log("https://crudbrain.herokuapp.com/api/v1/boards/" + boardId);
       $.ajax({
         async: false,
         url: "https://crudbrain.herokuapp.com/api/v1/boards/" + boardId,
         // headers:
         success: function(data, textStatus, xhr){
-          console.log('data', data)
-          console.log('textStatus', textStatus)
-          console.log('xhr', xhr)
-          console.log('get got');
           this.response = {
             status: xhr.status,
             board: data
           }
         }.bind(this),
         failure: function(data, textStatus, xhr){
-          console.log('data', data)
-          console.log('textStatus', textStatus)
-          console.log('xhr', xhr)
-          console.log("Ajax get board failed")
           this.response = {
             status: xhr.status,
             err: '? find error in ajax response apiFacade.getBoard()'
           };
         }.bind(this)
-      })
+      });
+      console.log("GET: ", this.response._id);
       return this.response;
     },
 
@@ -47,16 +39,22 @@ var ApiFacade = (function() {
           console.log(res)
         }.bind(this)
       })
+      console.log("POST: " + this.response._id);
       return this.response;
     },
 
 
-      putBoard: function(data) {
+    putBoard: function(data) {
+      console.log("PUT: ", data._id);
+      console.log("bubbles contains: ", data.bubbles.length);
+      console.log("JSON: ", JSON.stringify(data));
+      var putBoard = JSON.stringify(data);
       $.ajax({
-        async: false,
-        data: data,
+        async: true,
+        contentType: 'application/json',
+        data: putBoard,
         method: "PUT",
-        url: "https://crudbrain.herokuapp.com/api/v1/boards",
+        url: "https://crudbrain.herokuapp.com/api/v1/boards/" + data._id,
         // headers:
         success: function(res) {
           this.response = res
