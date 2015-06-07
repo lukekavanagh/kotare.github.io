@@ -17,7 +17,6 @@ function renderBubble(bubble) {
 
   $(function(){
     $('.delete')
-    //.button()
     .click(function(event){
       event.stopImmediatePropagation();
       $(this).parent().parent().remove();
@@ -29,17 +28,17 @@ function renderBubble(bubble) {
     if (!connectionInProgress){
       currentConnection.startBubbleId = $(this).parent().parent().attr('id');
       connectionInProgress = true;
-      console.log("Start bubble:" + currentConnection.startBubbleId);
-      console.log("Connecting: " + connectionInProgress);
     }
     else {
       currentConnection.endBubbleId = $(this).parent().parent().attr('id');
       renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, document.mySVG);
       connectionInProgress = false;
-      // TODO: put copy of currentLink in board.connections,
-      // and clear values in currentConnection
-      console.log("End bubble:" + currentConnection.endBubbleId);
-      console.log("Connecting: " + connectionInProgress);
+      board.connections.push({
+        startBubbleId: currentConnection.startBubbleId,
+        endBubbleId: currentConnection.endBubbleId
+      });
+      currentConnection.startBubbleId = "";
+      currentConnection.endBubbleId = "";
     }
   });
 
