@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta charset="utf-8" />
@@ -26,6 +25,23 @@
   <script src="js/nav.js"></script>
 
 </head>
+
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1642565209312684',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.2' // use version 2.2
+    });
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  };
+</script>
 
 <nav>
   <a href="" id="menuToggle" title="show menu">
@@ -89,5 +105,7 @@
     });
   </script>
 
+<!--<fb:login-button autologoutlink="true" scope="public_profile,email" onlogin="getAccessToken();">-->
+<!--</fb:login-button>-->
 </body>
 </html>
