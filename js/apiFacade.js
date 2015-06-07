@@ -4,6 +4,7 @@ var ApiFacade = (function() {
 
 		getBoard: function(boardId) {
       // this.response;
+      console.log("https://crudbrain.herokuapp.com/api/v1/boards/" + boardId);
       $.ajax({
         async: false,
         url: "https://crudbrain.herokuapp.com/api/v1/boards/" + boardId,

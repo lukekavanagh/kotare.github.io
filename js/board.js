@@ -9,11 +9,14 @@ $(document).ready(function() {
   this.mySVG = $('body').connect();
 
   //oauth2 junk here...  
-  //get/post a board (board = ?)
-  response = ApiFacade.get({boardId: 10985132509})
-  if response.status ===
 
-    // board = ApiFacade.postBoard()
+  board = ApiFacade.postBoard();
+  console.log("Board: ", board);
+  //get/post a board (board = ?)
+  console.log("With id: ",  ApiFacade.getBoard(board._id));
+
+  //if response.status ===
+
   // {
   //   _id: "",
   //   connections: [],
