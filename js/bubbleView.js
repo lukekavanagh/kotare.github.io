@@ -15,6 +15,7 @@ function renderBubble(bubble) {
   $('.bubble:last').resizable();
   $('.bubble:last .content').append(bubble.content);
 
+
   $(function(){
     $('.delete')
     .click(function(event){

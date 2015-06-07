@@ -10,18 +10,8 @@ $(document).ready(function() {
 
   //oauth2 junk here...  
 
+  // New board
   board = ApiFacade.postBoard();
-  console.log("Board: ", board);
-  //get/post a board (board = ?)
-  console.log("With id: ",  ApiFacade.getBoard(board._id));
-
-  //if response.status ===
-
-  // {
-  //   _id: "",
-  //   connections: [],
-  //   bubbles: [],
-  // };
 
   $("#board").on("click", createBubble);
 
@@ -29,6 +19,10 @@ $(document).ready(function() {
     e.stopImmediatePropagation();
   });
 
+  // Persist to db
+  $('#board').on('mouseup', function () {
+    var putResponse = ApiFacade.putBoard(board);
+  });
 });
 
 function createBubble(e){
@@ -36,6 +30,7 @@ function createBubble(e){
   var bubble = new Bubble(e.pageY, e.pageX, randId);
   renderBubble(bubble);
   board.bubbles.push(bubble);
+  console.log("Bubbles: ", board.bubbles);
 }
 
 
