@@ -32,37 +32,37 @@ var ApiFacade = (function () {
       return this.response;
 		},
 
-		// postBoard: function() {
-  //     $.ajax({
-  //       method: "POST",
-  //       url: "https://crudbrain.herokuapp.com/api/v1/boards",
-  //       // headers:
-  //       success: function(res){
-  //         console.log(res);
-  //       },
-  //       failure: function(res){
-  //         console.log(res);
-  //         console.log("getfailure");
-  //       }
-  //     })
-		// },
-
-		putBoard: function() {
+		postBoard: function() {
       $.ajax({
+        async: false,
+        method: "POST",
         url: "https://crudbrain.herokuapp.com/api/v1/boards",
         // headers:
         success: function(res){
-          console.log(res);
-        },
+          this.response = res;
+        }.bind(this),
         failure: function(res){
-          console.log(res);
           console.log("getfailure");
-        }
+          console.log(res)
+        }.bind(this)
       })
-		}
+      return this.response;
+    }
 
 
+	// 	putBoard: function() {
+ //      $.ajax({
+ //        url: "https://crudbrain.herokuapp.com/api/v1/boards",
+ //        // headers:
+ //        success: function(res){
+ //          console.log(res);
+ //        },
+ //        failure: function(res){
+ //          console.log(res);
+ //          console.log("getfailure");
+ //        }
+ //      })
+	// 	}
 	};
-
 
 })();
