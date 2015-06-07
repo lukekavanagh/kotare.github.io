@@ -15,20 +15,16 @@ $(document).ready(function() {
   //get/post a board (board = ?)
   console.log("With id: ",  ApiFacade.getBoard(board._id));
 
-  //if response.status ===
-
-  // {
-  //   _id: "",
-  //   connections: [],
-  //   bubbles: [],
-  // };
-
   $("#board").on("click", createBubble);
 
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
   });
 
+  // Persist to db
+  $('#board').on('mouseup', function () {
+    var putResponse = ApiFacade.putBoard(board);
+  });
 });
 
 function createBubble(e){
