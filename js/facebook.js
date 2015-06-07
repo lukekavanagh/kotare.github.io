@@ -1,17 +1,18 @@
 // This function is called when someone finishes with the Login
 // Button.  See the onlogin handler attached to it in the sample
 // code below.
-function getAccessToken() {
+function getUser() {
   console.log("getAccesstoken()");
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
-      console.log(response);
       // Logged into CRUDbrain and Facebook.
-      return response.authResponse.accessToken;
-      console.log(response.authResponse);
-    } 
-
-    return null;      
+      return {
+        id: response.authResponse.userID,
+        access_token: response.authResponse.accessToken
+      }
+    } else { 
+      return null;      
+    }
   });
 }
 
