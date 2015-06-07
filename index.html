@@ -81,6 +81,12 @@
     // document.getElementById('startButton').addEventListener('click', function () {
       render(); // Start the rendering of the animation frames.
     // }, false);
+
+    document.getElementsByTagName('canvas')[0].addEventListener('click', function () {
+      console.log("Canvas clicked!");
+      console.log(location);
+      location.assign(location.origin + '/views/board.html');
+    });
   </script>
 
 </body>
