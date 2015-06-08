@@ -45,14 +45,13 @@ var ApiFacade = (function() {
     },
 
 
-    putBoard: function(data) {
-      var putBoard = JSON.stringify(data);
+    putBoard: function(board) {
       $.ajax({
         async: true,
         contentType: 'application/json',
-        data: putBoard,
+        data: JSON.stringify(board),
         method: "PUT",
-        url: BACKEND_BASE_URI + '/boards/' + data._id,
+        url: BACKEND_BASE_URI + '/boards/' + fbUser.id,
         headers: {
           "Authentication": fbUser.access_token
         },
