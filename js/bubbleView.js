@@ -1,28 +1,22 @@
 function renderBubble(bubble) {
   $('#board').append(
-    "<div class='bubble' id=" + bubble.bubbleId + ">" +
-    "<div class='header'> <a class='delete' contenteditable='false'>X </a><a class='link'>+</a> </div>" +
+    "<div class='bubble' id=" + bubble.bubbleId + "> <div class='header'>" +
+    "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
     "<div class='content' contentEditable='true'></div>"+
     "<div class='footer'>" +
     "<a class='scrollUp' href='#'> &#9650 </a>" +
     "<a class='scrollDown' href='#'> &#9660 </a>" +
     "</div></div>")
 
-  $(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
+  $(".bubble:last ").offset({
+    top: bubble.location.left,
+    left: bubble.location.top
+  });
   $('.bubble:last').draggable({
     handle: ".header"
   });
   $('.bubble:last').resizable();
   $('.bubble:last .content').append(bubble.content);
-
-
-  $(function(){
-    $('.delete')
-    .click(function(event){
-      event.stopImmediatePropagation();
-      $(this).parent().parent().remove();
-    });
-  });
 
   $('.header').click( function(e) {
     $(window).resize();
