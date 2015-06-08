@@ -27,8 +27,10 @@ function renderBubble(bubble) {
     if (!connectionInProgress){
       currentConnection.startBubbleId = $(this).parent().parent().attr('id');
       connectionInProgress = true;
-    }
-    else {
+    } else if(connectionRemover(currentConnection.startBubbleId, $(this).parent().parent().attr('id')) == "removed"){
+      console.log("connection broken");
+      connectionInProgress = false;
+    } else {
       currentConnection.endBubbleId = $(this).parent().parent().attr('id');
       renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, document.mySVG);
       connectionInProgress = false;
