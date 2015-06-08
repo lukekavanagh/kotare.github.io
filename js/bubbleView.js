@@ -1,14 +1,17 @@
 function renderBubble(bubble) {
   $('#board').append(
-    "<div class='bubble' id=" + bubble.bubbleId + ">" +
-    "<div class='header'><a class='link'>+</a> </div>" +
+    "<div class='bubble' id=" + bubble.bubbleId + "> <div class='header'>" +
+    "<a class='link'> <img src='../images/add_link.png'> </a> </div>" +
     "<div class='content' contentEditable='true'></div>"+
     "<div class='footer'>" +
     "<a class='scrollUp' href='#'> &#9650 </a>" +
     "<a class='scrollDown' href='#'> &#9660 </a>" +
     "</div></div>")
 
-  $(".bubble:last ").offset({top: bubble.location.left, left: bubble.location.top});
+  $(".bubble:last ").offset({
+    top: bubble.location.left,
+    left: bubble.location.top
+  });
   $('.bubble:last').draggable({
     handle: ".header"
   });
