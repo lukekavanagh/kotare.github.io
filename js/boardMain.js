@@ -8,9 +8,11 @@ var board;
 
 $(document).ready(function() {
 
-  facebookSdk();
+  facebookSdk(secureMain); // #1
+  // everything waits
+});
 
-
+function secureMain() {
   $('#logoutButton').click(function (e) {
     e.stopImmediatePropagation();
 
@@ -22,8 +24,8 @@ $(document).ready(function() {
 
    this.mySVG = $('body').connect();
 
-   // New board
-   board = ApiFacade.postBoard();
+   // New board execution pauses until fbUser populated
+   ApiFacade.retrieveBoard();
 
    $("#board").on("click", createBubble);
    $('#board').on("click", '.bubble', function(e) {
@@ -41,7 +43,7 @@ $(document).ready(function() {
    $('#board').on('mouseup', function () {
      var putResponse = ApiFacade.putBoard(board);
    });
-});
+}
 
 
 function createBubble(e){
@@ -52,7 +54,7 @@ function createBubble(e){
   console.log("Bubbles: ", board.bubbles);
 }
 
-function facebookSdk() {
+function facebookSdk(callback) {
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1642565209312684',
@@ -65,6 +67,8 @@ function facebookSdk() {
       setUser(response);
       if (!fbUser) {
         window.location = "/";
+      } else {
+        callback();
       }
     });
   };

@@ -3,49 +3,45 @@ var ApiFacade = (function() {
   var BACKEND_BASE_URI = 'http://localhost:5000/api/v1';
   //var BACKEND_BASE_URI = 'http://crudbrain.herokuapp.com/api/v1';
 
+  function getBoard (boardId) {
+    $.ajax({
+      async: false,
+      url: BACKEND_BASE_URI + '/boards/' + boardId,
+      headers: {
+        "Authentication": fbUser.access_token
+      },
+      success: function(data, textStatus, xhr){
+        board = data;
+      },
+      failure: function(data, textStatus, xhr){
+        console.log("GET failed: ", textStatus);
+      }
+    });
+  }
+
   return {
 
-		getBoard: function(boardId) {
-      // this.response;
-      $.ajax({
-        async: false,
-        url: BACKEND_BASE_URI + '/boards/' + boardId,
-        // headers: {
-        //   "Authorization": fbUser.access_token
-        // },
-        success: function(data, textStatus, xhr){
-          this.response = {
-            status: xhr.status,
-            board: data
-          }
-        }.bind(this),
-        failure: function(data, textStatus, xhr){
-          this.response = {
-            status: xhr.status,
-            err: '? find error in ajax response apiFacade.getBoard()'
-          };
-        }.bind(this)
-      });
-      return this.response;
-    },
-
-    postBoard: function() {
+    retrieveBoard: function() {
       $.ajax({
         async: false,
         method: "POST",
         url: BACKEND_BASE_URI + '/boards',
-        // headers: {
-        //   "Authorization": fbUser.access_token
-        // },
-        success: function(res) {
-          this.response = res;
-        }.bind(this),
+        headers: {
+          "Authentication": fbUser.access_token
+        },
+        complete: function (xhr, textStatus) {
+          if (xhr.status === 409) {
+            getBoard(fbUser.id);
+          }
+        },
+        success: function (data, textStatus, xhr) {
+          // No board found, new board created
+          board = data;
+        },
         failure: function(res) {
-          console.log("getfailure");
-          console.log(res)
-        }.bind(this)
+          console.log("FAILURE");
+        }
       })
-      return this.response;
     },
 
 
@@ -57,9 +53,9 @@ var ApiFacade = (function() {
         data: putBoard,
         method: "PUT",
         url: BACKEND_BASE_URI + '/boards/' + data._id,
-        // headers: {
-        //   "Authorization": fbUser.access_token
-        // },
+        headers: {
+          "Authentication": fbUser.access_token
+        },
         success: function(res) {
           this.response = res
         }.bind(this),
