@@ -66,4 +66,9 @@
   bottom: 2px;
 }
 
+.link-image {
+  max-height: 20px;
+  max-width: 20px;
+}
+
 
