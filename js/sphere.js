@@ -1,4 +1,4 @@
-var sphere = (function() {
+function sphere() {
   var bitmap = new Image();
   bitmap.src = '../images/bluebrain.jpg'; // Pre-load the bitmap, in conjunction with the Start button, to avoid any potential THREE.ImageUtils.loadTexture async issues.
   bitmap.onerror = function () {
@@ -45,4 +45,4 @@ var sphere = (function() {
     console.log(location);
     location.assign(location.origin + '/views/board.html');
   });
-})();
+}
