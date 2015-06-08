@@ -19,21 +19,21 @@
     <script src="../js/connectionView.js"></script>
     <script src="../js/board.js"></script>
 <body id="board">
-<button id="fb" class="login"></button>
+<div id="fbButton"></div>
 <script>
-  var fbUser;
-
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1642565209312684',
-      cookie     : true,  // enable cookies to allow the server to access 
-                          // the session
+      cookie     : true,  // session cookies
       xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.2' // use version 2.2
+      version    : 'v2.2'
     });
 
     FB.getLoginStatus(function(response) {
-      getUser(response, fbUser);
+      setUser(response);
+      if (fbUser) {
+        document.getElementById('fbButton').classList.add('logged-in');
+      }
     });
   };
 
@@ -45,13 +45,6 @@
     js.src = "http://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-
-  document.getElementById('fb').addEventListener('click', function (e) {
-    FB.login(function (response) {
-      getUser(response, fbUser);
-      console.log(fbUser.access_token);
-    }, {scope: 'public_profile,email'});  
-  });
 </script>
 </body>
 </html>
