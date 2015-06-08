@@ -1,4 +1,4 @@
-var test = function(){
+function nav() {
   $('#menuToggle').click(function(e){
     var $parent = $(this).parent('nav');
     $parent.toggleClass("open");
@@ -12,8 +12,3 @@ var test = function(){
     e.preventDefault();
   }); 
 }
-
-
-$(document).ready(function(){
-  test();
-});
