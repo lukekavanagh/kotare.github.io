@@ -1,7 +1,7 @@
 function renderBubble(bubble) {
   $('#board').append(
     "<div class='bubble' id=" + bubble.bubbleId + "> <div class='header'>" +
-    "<a class='link'> <img src='../images/add_link.png'> </a> </div>" +
+    "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
     "<div class='content' contentEditable='true'></div>"+
     "<div class='footer'>" +
     "<a class='scrollUp' href='#'> &#9650 </a>" +
