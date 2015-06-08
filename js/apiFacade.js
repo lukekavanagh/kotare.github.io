@@ -1,13 +1,17 @@
 var ApiFacade = (function() {
 
+  var BACKEND_BASE_URI = 'http://localhost:5000/api/v1';
+
   return {
 
 		getBoard: function(boardId) {
       // this.response;
       $.ajax({
         async: false,
-        url: "https://crudbrain.herokuapp.com/api/v1/boards/" + boardId,
-        // headers:
+        url: BACKEND_BASE_URI + '/boards/' + boardId,
+        headers: {
+          "Authorization": fbUser.access_token
+        },
         success: function(data, textStatus, xhr){
           this.response = {
             status: xhr.status,
@@ -29,8 +33,10 @@ var ApiFacade = (function() {
       $.ajax({
         async: false,
         method: "POST",
-        url: "https://crudbrain.herokuapp.com/api/v1/boards",
-        // headers:
+        url: BACKEND_BASE_URI + '/boards',
+        headers: {
+          "Authorization": fbUser.access_token
+        },
         success: function(res) {
           this.response = res;
         }.bind(this),
@@ -46,16 +52,16 @@ var ApiFacade = (function() {
 
     putBoard: function(data) {
       console.log("PUT: ", data._id);
-      console.log("bubbles contains: ", data.bubbles.length);
-      console.log("JSON: ", JSON.stringify(data));
       var putBoard = JSON.stringify(data);
       $.ajax({
         async: true,
         contentType: 'application/json',
         data: putBoard,
         method: "PUT",
-        url: "https://crudbrain.herokuapp.com/api/v1/boards/" + data._id,
-        // headers:
+        url: BACKEND_BASE_URI + '/boards/' + data._id,
+        headers: {
+          "Authorization": fbUser.access_token
+        },
         success: function(res) {
           this.response = res
         }.bind(this),
