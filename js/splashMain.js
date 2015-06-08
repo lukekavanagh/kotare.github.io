@@ -17,17 +17,11 @@ $(document).ready(function(){
   });
 
   sphere();
-   nav();
-      $("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering();
-      $('#Drone').trigger('play');
-        var InfiniteLoop = document.getElementById("Drone");
-        InfiniteLoop.loop = true;
+  nav();
+
+  $("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering();
+
 });
-
-  // var InfiniteLoop = document.getElementById("Drone");
-  // Infinite.loop = true;
-
-
 
 function facebookSdk() {
 
