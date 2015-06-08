@@ -1,0 +1,12 @@
+#fbButton {
+  background-image: url("../images/blue-facebook-logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+}
+
+#fbButton.logged-in {
+  background-image: url("../images/gnome-logout.png");
+}
+
