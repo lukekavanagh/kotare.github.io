@@ -4,7 +4,7 @@ var currentConnection = {
   endBubbleId: ""
 };
 var board;
-
+var mySVG;
 
 $(document).ready(function() {
   facebookSdk(secureMain); 
@@ -20,12 +20,15 @@ function secureMain() {
     });
   });
 
-   this.mySVG = $('body').connect();
+   mySVG = $('body').connect();
 
    // New board execution pauses until fbUser populated
    ApiFacade.retrieveBoard();
    for (var i = 0; i < board.bubbles.length; i++) {
      renderBubble(board.bubbles[i]);
+   }
+   for (var i = 0; i < board.connections.length; i++) {
+     renderConnections(board.connections[i].startBubbleId, board.connections[i].endBubbleId, mySVG);
    }
 
    $("#board").on("click", createBubble);
