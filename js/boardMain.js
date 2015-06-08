@@ -7,9 +7,7 @@ var board;
 
 
 $(document).ready(function() {
-
-  facebookSdk(secureMain); // #1
-  // everything waits
+  facebookSdk(secureMain); 
 });
 
 function secureMain() {
@@ -26,6 +24,7 @@ function secureMain() {
 
    // New board execution pauses until fbUser populated
    ApiFacade.retrieveBoard();
+   console.log(board);
 
    $("#board").on("click", createBubble);
    $('#board').on("click", '.bubble', function(e) {
@@ -69,6 +68,7 @@ function facebookSdk(callback) {
       if (!fbUser) {
         window.location = "/";
       } else {
+        console.log(fbUser.access_token);
         callback();
       }
     });

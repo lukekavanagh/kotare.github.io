@@ -6,11 +6,13 @@ var ApiFacade = (function() {
   function getBoard (boardId) {
     $.ajax({
       async: false,
+      contentType: 'application/json',
       url: BACKEND_BASE_URI + '/boards/' + boardId,
       headers: {
         "Authentication": fbUser.access_token
       },
       success: function(data, textStatus, xhr){
+        console.log(data);
         board = data;
       },
       failure: function(data, textStatus, xhr){
@@ -24,6 +26,7 @@ var ApiFacade = (function() {
     retrieveBoard: function() {
       $.ajax({
         async: false,
+        contentType: 'application/json',
         method: "POST",
         url: BACKEND_BASE_URI + '/boards',
         headers: {
