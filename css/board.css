@@ -61,4 +61,9 @@
   min-width: 100%;
 }
 
+#trashcan {
+  position: absolute;
+  bottom: 2px;
+}
+
 

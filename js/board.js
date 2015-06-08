@@ -8,7 +8,7 @@ var board;
 $(document).ready(function() {
   this.mySVG = $('body').connect();
 
-  //oauth2 junk here...  
+  //oauth2 junk here...
 
   // New board
   board = ApiFacade.postBoard();
@@ -18,6 +18,14 @@ $(document).ready(function() {
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
   });
+
+  $("#trashcan").droppable({
+    drop: function(event, ui){
+      $(ui.draggable).remove();
+      console.log(ui);
+    }
+  });
+
 
   // Persist to db
   $('#board').on('mouseup', function () {
