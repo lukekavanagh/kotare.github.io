@@ -2,24 +2,29 @@ var fbUser;
 
 $(function() {
 
-  $('#fbButton').click(function (e) {
+  $('#boardLink').click(function (e) {
     e.stopImmediatePropagation();
 
     if (!fbUser) {
       FB.login(function (response) {
         setUser(response);
-        $(e.target).toggleClass('logged-in');
+        if (fbUser.access_token) {
+          window.location = "/views/board.html";
+        }
       }, {
         scope: 'public_profile,email'
       });  
-    } else {
-      FB.logout(function (response) {
-        $(e.target).toggleClass('logged-in');
-        fbUser = null;
-      });
     }
   });
 
+  $('#logoutButton').click(function (e) {
+    e.stopImmediatePropagation();
+
+    FB.logout(function (response) {
+      fbUser = null;
+      window.location = '/';
+    });
+  });
 });
 
 function setUser(response) {
