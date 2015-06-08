@@ -1,5 +1,21 @@
 $(document).ready(function(){
 	facebookSdk();
+
+	$('#boardLink').click(function (e) {
+    e.stopImmediatePropagation();
+    console.log(fbUser);
+    if (!fbUser) {
+      FB.login(function (response) {
+        setUser(response);
+        if (fbUser.access_token) {
+          window.location = "/views/board.html";
+        }
+      }, {
+        scope: 'public_profile,email'
+      });  
+    }
+  });
+
 	nav();
 	$("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering();
 	$('#Ethereal').trigger('play');

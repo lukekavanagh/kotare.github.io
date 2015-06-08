@@ -54,4 +54,4 @@ function renderBubble(bubble) {
     var scrollHeight = $("#" + currentBubbleId).find(".content").scrollTop();
     $("#" + currentBubbleId).find(".content").scrollTop(scrollHeight + 25);
   });
-};
+}

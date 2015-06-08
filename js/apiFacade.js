@@ -10,9 +10,9 @@ var ApiFacade = (function() {
       $.ajax({
         async: false,
         url: BACKEND_BASE_URI + '/boards/' + boardId,
-        headers: {
-          "Authorization": fbUser.access_token
-        },
+        // headers: {
+        //   "Authorization": fbUser.access_token
+        // },
         success: function(data, textStatus, xhr){
           this.response = {
             status: xhr.status,
@@ -35,9 +35,9 @@ var ApiFacade = (function() {
         async: false,
         method: "POST",
         url: BACKEND_BASE_URI + '/boards',
-        headers: {
-          "Authorization": fbUser.access_token
-        },
+        // headers: {
+        //   "Authorization": fbUser.access_token
+        // },
         success: function(res) {
           this.response = res;
         }.bind(this),
@@ -60,9 +60,9 @@ var ApiFacade = (function() {
         data: putBoard,
         method: "PUT",
         url: BACKEND_BASE_URI + '/boards/' + data._id,
-        headers: {
-          "Authorization": fbUser.access_token
-        },
+        // headers: {
+        //   "Authorization": fbUser.access_token
+        // },
         success: function(res) {
           this.response = res
         }.bind(this),
