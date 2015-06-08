@@ -26,7 +26,6 @@ var ApiFacade = (function() {
           };
         }.bind(this)
       });
-      console.log("GET: ", this.response._id);
       return this.response;
     },
 
@@ -46,13 +45,11 @@ var ApiFacade = (function() {
           console.log(res)
         }.bind(this)
       })
-      console.log("POST: " + this.response._id);
       return this.response;
     },
 
 
     putBoard: function(data) {
-      console.log("PUT: ", data._id);
       var putBoard = JSON.stringify(data);
       $.ajax({
         async: true,

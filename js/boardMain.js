@@ -20,27 +20,27 @@ $(document).ready(function() {
     });
   });
 
-  // this.mySVG = $('body').connect();
+   this.mySVG = $('body').connect();
 
-  // // New board
-  // board = ApiFacade.postBoard();
+   // New board
+   board = ApiFacade.postBoard();
 
-  // $("#board").on("click", createBubble);
-  // $('#board').on("click", '.bubble', function(e) {
-  //   e.stopImmediatePropagation();
-  // });
+   $("#board").on("click", createBubble);
+   $('#board').on("click", '.bubble', function(e) {
+     e.stopImmediatePropagation();
+   });
 
-  // $("#trashcan").droppable({
-  //   drop: function(event, ui){
-  //     $(ui.draggable).remove();
-  //     console.log(ui);
-  //   }
-  // });
+   $("#trashcan").droppable({
+     drop: function(event, ui){
+       $(ui.draggable).remove();
+       console.log(ui);
+     }
+   });
 
-  // // Persist to db
-  // $('#board').on('mouseup', function () {
-  //   var putResponse = ApiFacade.putBoard(board);
-  // });
+   // Persist to db
+   $('#board').on('mouseup', function () {
+     var putResponse = ApiFacade.putBoard(board);
+   });
 });
 
 
