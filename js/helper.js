@@ -13,15 +13,18 @@ var helper= {
 
 function connectionRemover(bubbleOneId, bubbleTwoId){
 	var links = board.connections;
+  console.log(links.length);
 	for (var i=0; i < links.length; i++) {
     if ((links[i].startBubbleId == bubbleOneId &&
       links[i].endBubbleId == bubbleTwoId) ||
       (links[i].endBubbleId == bubbleOneId &&
       links[i].startBubbleId == bubbleTwoId)) {
-    		// links.splice(i, 1);
-    	delete links[i];
-    	$(window).resize();
-        return "removed";
+    	links.splice(i, 1);
+
+      mySVG.clear();
+      refreshConnections();
+      console.log(links.length);
+      return "removed";
     }
 	}
 }
