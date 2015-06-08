@@ -24,7 +24,9 @@ function secureMain() {
 
    // New board execution pauses until fbUser populated
    ApiFacade.retrieveBoard();
-   console.log(board);
+   for (var i = 0; i < board.bubbles.length; i++) {
+     renderBubble(board.bubbles[i]);
+   }
 
    $("#board").on("click", createBubble);
    $('#board').on("click", '.bubble', function(e) {
