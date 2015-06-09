@@ -7,7 +7,7 @@ var board;
 
 
 $(document).ready(function() {
-  facebookSdk(secureMain); 
+  facebookSdk(secureMain);
 });
 
 function secureMain() {
@@ -44,6 +44,8 @@ function secureMain() {
    $('#board').on('mouseup', function () {
      var putResponse = ApiFacade.putBoard(board);
    });
+
+   picMain()
 }
 
 

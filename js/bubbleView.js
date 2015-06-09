@@ -63,6 +63,7 @@ function renderInputOptions(e) {
     var $inputOptionBox = $('<div id="inputOptionBox"></div>');
     var $textOption = $('<i id="text" class="fa fa-align-left"></i>');
     var $photoOption = $('<i id="photo" class="fa fa-camera"></i>');
+    var $magicCameraInput = $('<input type="file" capture="camera" accept="image/*" id="takePictureField">')
     var $audioOption = $('<i id="audio" class="fa fa-microphone"></i>')
     var $videoOption = $('<i id="video" class="fa fa-video-camera"></i>')
     var $drawOption = $('<i id="draw" class="fa fa-pencil"></i>')
@@ -71,6 +72,8 @@ function renderInputOptions(e) {
     $inputOptionBox.append($audioOption);
     $inputOptionBox.append($videoOption);
     $inputOptionBox.append($drawOption);
+    $photoOption.append($magicCameraInput);
+    $photoOption.append("<img id='yourimage'>");
     $('#board').append($inputOptionBox);
   } else {
     var $inputOptionBox = $('#inputOptionBox');
@@ -87,6 +90,11 @@ function renderInputOptions(e) {
     $inputOptionBox.hide()
     createBubble(e)
   });
+
+  $photoOption.on('click', function(e) {
+    e.stopImmediatePropagation()
+    $inputOptionBox.hide()
+  })
 
   var xPos = e.pageY + 'px';
   var yPos = e.pageX + 'px';
@@ -105,7 +113,6 @@ function renderInputOptions(e) {
 }
 
 function animateOptions(options) {
-  console.log('options in animateOptions: ', options);
   resetOptionPosition(options)
   var iconSize = 16 // px
   // http://www.mathopenref.com/coordpolycalc.html for cartesian polygon coords below
@@ -127,11 +134,9 @@ function animateOptions(options) {
       'top': finalTopLeftCoords[i][0]
     }, 400)
   }
-  console.log(finalTopLeftCoords)
 }
 
 function resetOptionPosition(options) {
-  console.log(options)
   for (var i = 0; i < options.length; i++) {
     options[i].css({
       'top': 0,
