@@ -8,10 +8,30 @@ function renderBubble(bubble) {
     "<a class='scrollDown' href='#'> &#9660 </a>" +
     "</div></div>"
   )
+
+  var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
+  $(".bubble:last .content").css({'padding': paddingPercent + '%'})
+
   $(".bubble:last ").offset({
     top: bubble.location.top,
     left: bubble.location.left
   });
+  console.log(bubble);
+  switch(bubble.type) {
+    case "text":
+      $(".bubble:last .content").html(bubble.content);
+      break;
+    case "image":
+      console.log('in image rendering ***************');
+      $image = $('<img src="'+bubble.sourceUrl+'"></img>')
+      $image.css({
+        'max-height': '100%',
+        'max-width': '100%',
+      })
+      $(".bubble:last .content").append($image);
+      break;
+  }
+  
   $(".bubble:last").css({
     "width": bubble.size.width,
     "height": bubble.size.height

@@ -84,8 +84,12 @@ top = pos - iconSize/2
 }
 
 .bubble .content {
-  padding: 20px;
-  height: 70px;
+  /*padding: 20px;*/
+  /*height: 70px;*/
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   outline: none;
   overflow: hidden;
 }
