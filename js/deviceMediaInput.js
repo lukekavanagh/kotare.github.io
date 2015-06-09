@@ -16,8 +16,7 @@
 // }, errorCallback);
 
 function picMain() {
-  console.log('onReady');
-  $("#takePictureField").on("change",gotPic);
+  $("#photoOption").on("change",gotPic);
   // $("#yourimage").load(getSwatches);
   desiredWidth = window.innerWidth;
   if(!("url" in window) && ("webkitURL" in window)) {
@@ -26,6 +25,7 @@ function picMain() {
 }
 
 function gotPic(event) {
+  console.log('got Pic');
   if( event.target.files.length == 1 && 
       event.target.files[0].type.indexOf("image/") == 0) {
     $("#yourimage").attr("src",URL.createObjectURL(event.target.files[0]));

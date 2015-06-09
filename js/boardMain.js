@@ -60,9 +60,7 @@ function createBubble(e){
   var randId = helper.guid();
   var bubble = new Bubble(e.pageY, e.pageX, randId);
   renderBubble(bubble);
-  console.log(board);
   board.bubbles.push(bubble);
-  console.log("Bubbles: ", board.bubbles);
 }
 
 function facebookSdk(callback) {
