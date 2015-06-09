@@ -1,9 +1,9 @@
 var ApiFacade = (function() {
 
-  // Development (Rich's laptop)
+  // DEVELOPMENT (Rich's laptop)
   //var BACKEND_BASE_URI = 'http://localhost:5000/api/v1';
   
-  // Development (isolated kotare.github.io backend)
+  // DEVELOPMENT (isolated kotare.github.io backend)
   //var BACKEND_BASE_URI = 'http://crudbrain.herokuapp.com/api/v1';
 
   // PRODUCTION
