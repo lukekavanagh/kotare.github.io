@@ -1,12 +1,14 @@
-function Bubble (x,y, randId){
-  this.bubbleId=randId;
-  this.content ="this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentth this is the content this is the content this is the content this is the contentththis is the content this is the content this is the content this is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the contentthis is the content";
+function Bubble (args){
+  this.type = args.type;
+  this.bubbleId=args.id;
+  this.sourceURL=args.URL;
+  this.content ="";
   this.size = {
-    left: x,
-    top: y
+    left: "160px",
+    top: "160px"
   };
   this.location = {
-    left: x,
-    top: y
+    left: args.left,
+    top: args.top
   };
 };
