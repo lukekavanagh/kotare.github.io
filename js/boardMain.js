@@ -8,6 +8,7 @@ var mySVG;
 
 $(document).ready(function() {
   facebookSdk(secureMain);
+
 });
 
 

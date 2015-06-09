@@ -1,9 +1,11 @@
+html, body { position: fixed; height: 100%; width: 100%; }
+
 #board {
   font-family: monospace;
   background-color: black;
   margin: 0;
   padding: 0;
-  position: relative;
+  position: absolute;
 }
 
 .bubble {
@@ -64,6 +66,7 @@
 #trashcan {
   position: absolute;
   bottom: 2px;
+  z-index:100;
 }
 
 .link-image {
@@ -71,4 +74,8 @@
   max-width: 20px;
 }
 
-
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
