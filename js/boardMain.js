@@ -28,7 +28,7 @@ function secureMain() {
      renderBubble(board.bubbles[i]);
    }
 
-   $("#board").on("click", createBubble);
+   $("#board").on("click", renderInputOptions);
    $('#board').on("click", '.bubble', function(e) {
      e.stopImmediatePropagation();
    });

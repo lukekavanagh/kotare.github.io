@@ -6,6 +6,50 @@
   position: relative;
 }
 
+#inputOptionBox {
+  position: absolute;
+  z-index: 100;
+}
+
+.fa {
+  position: absolute;
+}
+
+/*
+calculate polygon cartesian coordinates
+http://www.mathopenref.com/coordpolycalc.html
+0,20
+19,6
+12,-16
+-12,-16
+-19,6
+
+
+iconSize = 16 px // (fontAwesome icon, size easily changed by adding size class!)
+left = pos - iconSize/2
+top = pos - iconSize/2
+*/
+#photo {
+  left: -8px;
+  top: -24px;
+}
+#audio {
+  left: 11px;
+  top: -14px;
+}
+#draw {
+  left: 4px;
+  top: 8px;
+}
+#video {
+  left: -20px;
+  top: 8px;
+}
+#text {
+  left: -27px;
+  top: -14px;
+}
+
 .bubble {
   position: absolute;
   width: 160px;
