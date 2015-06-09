@@ -47,9 +47,9 @@ function secureMain() {
   });
 
   $("#trashcan").droppable({
-    drop: function(event, ui){
+    drop: function(e, ui){
       $(ui.draggable).remove();
-      console.log(ui);
+      board.removeBubble(ui.draggable.context.id);
     }
   });
 

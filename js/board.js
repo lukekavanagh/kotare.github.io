@@ -26,35 +26,31 @@ var board = (function () {
   }
 
   function render() {
-    if (!boardData.bubbles) {
-      boardData.bubbles = [];
+    if (boardData.bubbles) {
+      for (var i = 0; i < boardData.bubbles.length; i++) {
+        renderBubble(boardData.bubbles[i]);
+      }
     }
-    if (!boardData.connections) {
-      boardData.connections = [];
-    }
-    bubbles = getBubbles();
-    for (var i = 0; i < bubbles.length; i++) {
-      renderBubble(bubbles[i]);
-    }
-    connections = getConnections();
-    for (var i = 0; i < connections.length; i++) {
-      renderConnections(connections[i].startBubbleId, connections[i].endBubbleId, mySVG);
+    if (boardData.connections) {
+      for (var i = 0; i < boardData.connections.length; i++) {
+        renderConnections(boardData.connections[i].startBubbleId, boardData.connections[i].endBubbleId, mySVG);
+      }
     }
   }
 
   function addBubble(bubble) {
-    getBubbles().push(bubble);
+    boardData.bubbles.push(bubble);
     save();
   }
 
   function removeBubble(id) {
     for (var i = 0; i < boardData.bubbles.length; i++) {
-      if (id === boardData.bubbles[i]._id) {
+      if (id === boardData.bubbles[i].bubbleId) {
         boardData.bubbles.splice(i, 1);
+        save();
         return;
       }
     }
-    save();
   }
 
   function getBubbles() {
