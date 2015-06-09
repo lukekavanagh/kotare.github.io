@@ -59,23 +59,30 @@ function renderBubble(bubble) {
 }
 
 function renderInputOptions(e) {
-  if (!$inputOptionBox) {
+  console.log($('#inputOptionBox'));
+
+  if ($('#inputOptionBox')) {
     var $inputOptionBox = $('<div id="inputOptionBox"></div>');
-    $inputOptionBox.append($('<i id="text" class="fa fa-align-left"></i>'));
-    $inputOptionBox.append($('<i id="photo" class="fa fa-camera"></i>'));
-    $inputOptionBox.append($('<i id="audio" class="fa fa-microphone"></i>'));
-    $inputOptionBox.append($('<i id="video" class="fa fa-video-camera"></i>'));
-    $inputOptionBox.append($('<i id="draw" class="fa fa-pencil"></i>'));
+    var $textOption = $('<i id="text" class="fa fa-align-left"></i>');
+    var $photoOption = $('<i id="photo" class="fa fa-camera"></i>');
+    var $audioOption = $('<i id="audio" class="fa fa-microphone"></i>')
+    var $videoOption = $('<i id="video" class="fa fa-video-camera"></i>')
+    var $drawOption = $('<i id="draw" class="fa fa-pencil"></i>')
+    
+    $textOption.click(function(e){createBubble(e)})
+    // $photoOption
+
+    $inputOptionBox.append($textOption);
+    $inputOptionBox.append($photoOption);
+    $inputOptionBox.append($audioOption);
+    $inputOptionBox.append($videoOption);
+    $inputOptionBox.append($drawOption);
   }
   var xPos = e.pageY + 'px';
   var yPos = e.pageX + 'px';
-  console.log(xPos);
-  console.log(yPos);
   $inputOptionBox.css({
     'top': xPos,
     'left': yPos
   })
-  console.log($inputOptionBox)
-  console.log($('.board'))
   $('#board').append($inputOptionBox);
 }

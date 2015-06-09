@@ -12,7 +12,6 @@ var ApiFacade = (function() {
         "Authentication": fbUser.access_token
       },
       success: function(data, textStatus, xhr){
-        console.log(data);
         board = data;
       },
       failure: function(data, textStatus, xhr){
