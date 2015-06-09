@@ -1,14 +1,15 @@
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
-function getAccessToken() {
+var fbUser;
+
+function setUser(response) {
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
-      // Logged into CRUDbrain and Facebook.
-      return response.authResponse.accessToken;
-    } 
 
-    return null;      
+      // Logged into CRUDbrain and Facebook.
+      fbUser = {
+        id: response.authResponse.userID,
+        access_token: response.authResponse.accessToken
+      };
+
+    }
   });
 }
-
