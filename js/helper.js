@@ -13,7 +13,6 @@ var helper= {
 
 function connectionRemover(bubbleOneId, bubbleTwoId){
 	var links = board.connections;
-  console.log(links.length);
 	for (var i=0; i < links.length; i++) {
     if ((links[i].startBubbleId == bubbleOneId &&
       links[i].endBubbleId == bubbleTwoId) ||
@@ -21,9 +20,13 @@ function connectionRemover(bubbleOneId, bubbleTwoId){
       links[i].startBubbleId == bubbleTwoId)) {
     	links.splice(i, 1);
 
-      mySVG.clear();
-      refreshConnections();
-      console.log(links.length);
+      // Update canvas
+      mySVG.removeLine({
+        left_node: '#' + bubbleOneId,
+        right_node: '#' + bubbleTwoId
+      });
+      mySVG.redrawLines();
+
       return "removed";
     }
 	}
