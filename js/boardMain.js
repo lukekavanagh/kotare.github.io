@@ -7,8 +7,10 @@ var board;
 
 
 $(document).ready(function() {
-  facebookSdk(secureMain); 
+  facebookSdk(secureMain);
 });
+
+
 
 function secureMain() {
   $('#logoutButton').click(function (e) {
@@ -19,6 +21,8 @@ function secureMain() {
       window.location = '/';
     });
   });
+
+  sphere();
 
    this.mySVG = $('body').connect();
 
@@ -61,7 +65,7 @@ function facebookSdk(callback) {
     FB.init({
       appId      : '1642565209312684',  // Inkling (PRODUCTION)
       //appId      : '1643906175845254',    // CRUDbrain (test)
-      cookie     : true,  
+      cookie     : true,
       xfbml      : true,                  // parse social plugins on this page
       version    : 'v2.2'
     });
