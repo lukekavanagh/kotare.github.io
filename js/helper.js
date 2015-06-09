@@ -18,10 +18,16 @@ function connectionRemover(bubbleOneId, bubbleTwoId){
       links[i].endBubbleId == bubbleTwoId) ||
       (links[i].endBubbleId == bubbleOneId &&
       links[i].startBubbleId == bubbleTwoId)) {
-    		// links.splice(i, 1);
-    	delete links[i];
-    	$(window).resize();
-        return "removed";
+    	links.splice(i, 1);
+
+      // Update canvas
+      mySVG.removeLine({
+        left_node: '#' + bubbleOneId,
+        right_node: '#' + bubbleTwoId
+      });
+      mySVG.redrawLines();
+
+      return "removed";
     }
 	}
 }
