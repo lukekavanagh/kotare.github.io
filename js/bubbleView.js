@@ -32,7 +32,7 @@ function renderBubble(bubble) {
       connectionInProgress = false;
     } else {
       currentConnection.endBubbleId = $(this).parent().parent().attr('id');
-      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, document.mySVG);
+      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, mySVG);
       connectionInProgress = false;
       board.connections.push({
         startBubbleId: currentConnection.startBubbleId,
