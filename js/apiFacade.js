@@ -52,6 +52,7 @@ var ApiFacade = (function() {
     },
 
     putBoard: function(board, callback) {
+      console.log("PUT: ", board);
       $.ajax({
         contentType: 'application/json',
         data: JSON.stringify(board),

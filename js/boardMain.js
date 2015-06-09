@@ -20,31 +20,25 @@ function secureMain() {
   });
 
  $('.stopButton').on( "click", function() {
-      var playing = true;
-      var music = document.getElementById("Drone");
-      if(playing == true){
+    var playing = true;
+    var music = document.getElementById("Drone");
+    if(playing == true){
       music.muted = true;
-      };
+    };
   });
 
   $('.playButton').on( "click", function() {
-      var playing = false;
-      var music = document.getElementById("Drone");
-      if(playing == false){
+    var playing = false;
+    var music = document.getElementById("Drone");
+    if(playing == false){
       music.muted = false;
-      };
+    };
   });
 
   sphere();
   mySVG = $('body').connect();
 
   board.load();
-  for (var i = 0; i < board.getBubbles().length; i++) {
-    renderBubble(board.bubbles[i]);
-  }
-  for (var i = 0; i < board.connections.length; i++) {
-    renderConnections(board.connections[i].startBubbleId, board.connections[i].endBubbleId, mySVG);
-  }
 
   $("#board").on("click", renderInputOptions);
   $('#board').on("click", '.bubble', function(e) {
@@ -58,33 +52,47 @@ function secureMain() {
     }
   });
 
-  // Persist to db
-  $('#board').on('mouseup', function () {
-    console.log("JSON: ", JSON.stringify(board));
-    //board.save();
+  // Persist position and size changes after a drag event.
+  $('.bubble').on('dragstop', function (e) {
+    board.updateBubble(e);
+    board.save();
+  });
+
+  // Persist content changes
+  $('.content').on('input cut copy paste', function (e) {
+    board.updateBubble(e);
+    console.log("Content: ", e);
+    board.save();
   });
 }
 
 function createBubble(e){
-  var guId = helper.guid();
   var args = {
     inputType: e.inputType,
-    id: guId,
+    id: helper.guid(),
+    sourceUrl: "",
     location: {
       left: e.pageX,
       top: e.pageY
     }
   }
+
   switch(args.inputType){
     case "image":
       args.sourceUrl = e.sourceUrl;
       break;
   }
+
   var bubble = new Bubble(args);
   renderBubble(bubble);
-  console.log(board);
-  board.bubbles.push(bubble);
-  console.log("Bubbles: ", board.bubbles);
+  board.addBubble({
+    type: bubble.type,
+    bubbleId: bubble.bubbleId,
+    sourceUrl: bubble.sourceUrl,
+    content: bubble.content,
+    size: bubble.size,
+    location: bubble.location
+  });
 }
 
 function facebookSdk(callback) {
