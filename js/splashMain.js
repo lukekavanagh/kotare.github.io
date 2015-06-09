@@ -21,6 +21,24 @@ $(document).ready(function(){
 
   $("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering();
 
+
+  $('.stopButton').on( "click", function() {
+      var playing = true;
+      console.log( "clicked stop button");
+      var music = document.getElementById("Drone");
+      if(playing == true){
+      music.muted = true;
+      };
+  });
+  $('.playButton').on( "click", function() {
+      var playing = false;
+      console.log( "clicked play button");
+      var music = document.getElementById("Drone");
+      if(playing == false){
+      music.muted = false;
+      };
+  });
+
 });
 
 function facebookSdk() {
@@ -54,3 +72,5 @@ function facebookSdk() {
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 }
+
+
