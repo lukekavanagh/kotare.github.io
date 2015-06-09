@@ -1,17 +1,10 @@
 function renderBubble(bubble) {
   $('#board').append(
     "<div class='bubble' id=" + bubble.bubbleId + "> <div class='header'>" +
-    "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
-    "<div class='content' contentEditable='true'></div>"+
-    "<div class='footer'>" +
-    "<a class='scrollUp' href='#'> &#9650 </a>" +
-    "<a class='scrollDown' href='#'> &#9660 </a>" +
-    "</div></div>"
+      "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
+    "</div>"
   )
-
-  var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
-  $(".bubble:last .content").css({'padding': paddingPercent + '%'})
-
+  
   $(".bubble:last ").offset({
     top: bubble.location.top,
     left: bubble.location.left
@@ -19,19 +12,29 @@ function renderBubble(bubble) {
   console.log(bubble);
   switch(bubble.type) {
     case "text":
-      $(".bubble:last .content").html(bubble.content);
+      $(".bubble:last").append(
+        "<div class='content' contentEditable='true'>"+bubble.content+"</div>"+
+        "<div class='footer'>" +
+          "<a class='scrollUp' href='#'> &#9650 </a>" +
+          "<a class='scrollDown' href='#'> &#9660 </a>" +
+        "</div>"
+      );
       break;
     case "image":
       console.log('in image rendering ***************');
+      $content = $('<div class="content"></div>')
       $image = $('<img src="'+bubble.sourceUrl+'"></img>')
       $image.css({
         'max-height': '100%',
         'max-width': '100%',
       })
-      $(".bubble:last .content").append($image);
+      $content.append($image);
+      $(".bubble:last").append($content);
       break;
   }
-  
+  var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
+  $(".bubble:last .content").css({'padding': paddingPercent + '%'})
+
   $(".bubble:last").css({
     "width": bubble.size.width,
     "height": bubble.size.height
