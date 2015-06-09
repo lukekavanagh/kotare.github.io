@@ -43,7 +43,7 @@ function sphere() {
   // }, false);
 
   $('canvas:first').click(function (e) {
-    e.preventDefault();
+
     console.log("Canvas clicked!");
     console.log(location);
     // location.assign(location.origin + '/views/board.html');
