@@ -130,12 +130,28 @@ function showAddUrlForm(e) {
   e.stopImmediatePropagation()
   $form = $(
     '<form id="imageUrl">' +
-      '<input type="text" id="sourceUrl">' +
+      '<input type="text" id="sourceUrl" placeholder="image url here pal">' +
       '<input type="submit" value="yep">' +
     '</form>'
-  )
-  $('#imageUrl')
-  console.log('show url form');
+  );
+  $form.css({
+    'top': e.pageY,
+    'left': e.pageX,
+    'position': 'absolute'
+  });
+  $('#board').append($form);
+  $('#sourceUrl').focus();
+  console.log($form);
+  $form.submit(function(){addUrlToModel(e)})
+}
+
+function addUrlToModel(e) {
+  e.preventDefault();
+  $('#imageUrl').hide();
+  e.sourceUrl = $('#sourceUrl').val();
+  console.log(e.sourceUrl);
+  console.log(e.inputType);
+  createBubble(e);
 }
 
 function animateOptions(options) {

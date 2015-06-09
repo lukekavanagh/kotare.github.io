@@ -13,6 +13,7 @@ var ApiFacade = (function() {
       },
       success: function(data, textStatus, xhr){
         board = data;
+        console.log(board);
       },
       failure: function(data, textStatus, xhr){
         console.log("GET failed: ", textStatus);
@@ -48,6 +49,7 @@ var ApiFacade = (function() {
 
 
     putBoard: function(board) {
+      console.log(board, JSON.stringify(board));
       $.ajax({
         async: true,
         contentType: 'application/json',
