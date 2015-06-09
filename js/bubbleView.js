@@ -12,6 +12,10 @@ function renderBubble(bubble) {
     top: bubble.location.left,
     left: bubble.location.top
   });
+  $(".bubble:last").css({
+    "width": bubble.size.width,
+    "height": bubble.size.height
+  });
   $('.bubble:last').draggable({
     handle: ".header"
   });
@@ -86,7 +90,8 @@ function renderInputOptions(e) {
 
   $inputOptionBox.show()
   $textOption.on('click', function(e){
-    e.stopImmediatePropagation()
+    e.stopImmediatePropagation();
+    e.inputType = "text";
     $inputOptionBox.hide()
     createBubble(e)
   });

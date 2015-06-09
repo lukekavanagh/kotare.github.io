@@ -1,14 +1,11 @@
 function Bubble (args){
-  this.type = args.type;
+  this.type = args.inputType;
   this.bubbleId=args.id;
-  this.sourceURL=args.URL;
+  this.sourceUrl=args.URL;
   this.content ="";
   this.size = {
-    left: "160px",
-    top: "160px"
+    height: "160px",
+    width: "160px"
   };
-  this.location = {
-    left: args.left,
-    top: args.top
-  };
+  this.location = args.location
 };
