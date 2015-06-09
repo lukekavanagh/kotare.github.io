@@ -8,7 +8,6 @@ function renderBubble(bubble) {
     "<a class='scrollDown' href='#'> &#9660 </a>" +
     "</div></div>"
   )
-  console.log(bubble);
   $(".bubble:last ").offset({
     top: bubble.location.top,
     left: bubble.location.left
