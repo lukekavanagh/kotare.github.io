@@ -26,10 +26,21 @@ var board = (function () {
   function removeBubble() {
   }
 
+  function getBubbles() {
+    return this.bubbles;
+  }
+
+  function updateBubble() {
+  }
+
   function addConnection() {
   }
 
   function removeConnection() {
+  }
+
+  function getConnections() {
+    return this.connections;
   }
 
   return {
@@ -37,8 +48,11 @@ var board = (function () {
     load: load,
     addBubble: addBubble,
     removeBubble: removeBubble,
+    getBubbles: getBubbles,
+    updateBubble: updateBubble,
     addConnection: addConnection,
-    removeConnection: removeConnection
+    removeConnection: removeConnection,
+    getConnections: getConnections
   };
 })();
 

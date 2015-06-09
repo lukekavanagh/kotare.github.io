@@ -3,15 +3,12 @@ var currentConnection = {
   startBubbleId: "",
   endBubbleId: ""
 };
-var board;
+var board = new Board();
 var mySVG;
 
 $(document).ready(function() {
   facebookSdk(secureMain);
-
 });
-
-
 
 function secureMain() {
   $('#logoutButton').click(function (e) {
@@ -24,35 +21,34 @@ function secureMain() {
   });
 
   sphere();
+  mySVG = $('body').connect();
 
-   mySVG = $('body').connect();
-   // New board execution pauses until fbUser populated
-   ApiFacade.retrieveBoard();
-   for (var i = 0; i < board.bubbles.length; i++) {
-     renderBubble(board.bubbles[i]);
-   }
-   for (var i = 0; i < board.connections.length; i++) {
-     renderConnections(board.connections[i].startBubbleId, board.connections[i].endBubbleId, mySVG);
-   }
+  board.load();
+  for (var i = 0; i < board.getBubbles().length; i++) {
+    renderBubble(board.bubbles[i]);
+  }
+  for (var i = 0; i < board.connections.length; i++) {
+    renderConnections(board.connections[i].startBubbleId, board.connections[i].endBubbleId, mySVG);
+  }
 
-   $("#board").on("click", renderInputOptions);
-   $('#board').on("click", '.bubble', function(e) {
-     e.stopImmediatePropagation();
-   });
+  $("#board").on("click", renderInputOptions);
+  $('#board').on("click", '.bubble', function(e) {
+    e.stopImmediatePropagation();
+  });
 
-   $("#trashcan").droppable({
-     drop: function(event, ui){
-       $(ui.draggable).remove();
-       console.log(ui);
-     }
-   });
+  $("#trashcan").droppable({
+    drop: function(event, ui){
+      $(ui.draggable).remove();
+      console.log(ui);
+    }
+  });
 
-   // Persist to db
-   $('#board').on('mouseup', function () {
-     var putResponse = ApiFacade.putBoard(board);
-   });
+  // Persist to db
+  $('#board').on('mouseup', function () {
+    board.save();
+  });
 
-   picMain()
+  picMain()
 }
 
 
