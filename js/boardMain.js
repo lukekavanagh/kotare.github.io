@@ -35,7 +35,7 @@ function secureMain() {
      renderConnections(board.connections[i].startBubbleId, board.connections[i].endBubbleId, mySVG);
    }
 
-   $("#board").on("click", createBubble);
+   $("#board").on("click", renderInputOptions);
    $('#board').on("click", '.bubble', function(e) {
      e.stopImmediatePropagation();
    });
@@ -51,6 +51,8 @@ function secureMain() {
    $('#board').on('mouseup', function () {
      var putResponse = ApiFacade.putBoard(board);
    });
+
+   picMain()
 }
 
 
