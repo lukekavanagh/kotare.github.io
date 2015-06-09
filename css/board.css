@@ -50,8 +50,6 @@ top = pos - iconSize/2
 
 .bubble {
   position: absolute;
-  width: 160px;
-  height: 160px;
   background-color: #A269DB;
   box-shadow: -2px 2px 5px #555;
   overflow: hidden;

@@ -71,8 +71,21 @@ function secureMain() {
 
 
 function createBubble(e){
-  var randId = helper.guid();
-  var bubble = new Bubble(e.pageY, e.pageX, randId);
+  var guId = helper.guid();
+  var args = {
+    inputType: e.inputType,
+    id: guId,
+    location: {
+      left: e.pageX,
+      top: e.pageY
+    }
+  }
+  switch(args.inputType){
+    case "image":
+      args.sourceUrl = e.sourceUrl;
+      break;
+  }
+  var bubble = new Bubble(args);
   renderBubble(bubble);
   console.log(board);
   board.bubbles.push(bubble);
