@@ -8,7 +8,7 @@ $(document).ready(function(){
       FB.login(function (response) {
         setUser(response);
         if (fbUser.access_token) {
-          window.location = "/views/board.html";
+          window.location = "/";
         }
       }, {
         scope: 'public_profile,email'

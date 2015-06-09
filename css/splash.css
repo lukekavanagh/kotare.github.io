@@ -1,5 +1,7 @@
 html, body { position: fixed; height: 100%; width: 100%; }
 
+/***CSS WORD ANIMATIONS
+**/
 .os-phrases h2 {
   font-family: 'Dosis', 'Lato', sans-serif;
   font-size: 70px;
@@ -18,9 +20,9 @@ html, body { position: fixed; height: 100%; width: 100%; }
 
 h1 {
   font-family: 'Dosis', 'Lato', sans-serif;
-  font-size: 70px;
+  font-size: 20px;
   font-weight: 200;
-  width: 100%;
+  width: 50%;
   overflow: hidden;
   text-transform: uppercase;
   padding: 0;
@@ -30,9 +32,11 @@ h1 {
   left: 0;
   letter-spacing: 14px;
   text-align: center;
-  margin-top: 550px;
-  margin-left: -400px;
+/*  margin-top: 550px;
+  margin-left: -400px;*/
 }
+
+
 
 /***************
 LOGO
@@ -595,4 +599,13 @@ html, body {
   width: 5%;
   position: absolute;
   z-index: 100;
+}
+
+footer {
+  position: absolute;
+  width : 100%;
+  height: 100%;
+  margin-top: 550px;
+  bottom: 0;
+
 }

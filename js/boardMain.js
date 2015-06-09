@@ -63,7 +63,8 @@ function secureMain() {
 
    // Persist to db
    $('#board').on('mouseup', function () {
-     var putResponse = ApiFacade.putBoard(board);
+    console.log(JSON.stringify(board));
+     // var putResponse = ApiFacade.putBoard(board);
    });
 
    picMain()
