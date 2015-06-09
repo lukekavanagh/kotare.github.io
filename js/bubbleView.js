@@ -141,7 +141,10 @@ function showAddUrlForm(e) {
   $('#board').append($form);
   $('#sourceUrl').focus();
   console.log($form);
-  $form.submit(function(){addUrlToModel(e)})
+  $form.submit(function(eSubmit){
+    eSubmit.preventDefault();
+    addUrlToModel(e);
+  })
 }
 
 function addUrlToModel(e) {
