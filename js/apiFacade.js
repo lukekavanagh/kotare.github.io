@@ -17,11 +17,10 @@ var ApiFacade = (function() {
         "Authentication": fbUser.access_token
       },
       success: function(data, textStatus, xhr){
-        board = data;
         callback(data);
       },
-      failure: function(data, textStatus, xhr){
-        console.log("GET failed: ", textStatus);
+      error: function(xhr, textStatus, errorThrown){
+        console.log("GET failed: ", errorThrown, " with status: ", textStatus);
       }
     });
   }
@@ -38,20 +37,19 @@ var ApiFacade = (function() {
         },
         complete: function (xhr, textStatus) {
           if (xhr.status === 409) {
+            // Board exists for this user id
             getBoard(fbUser.id, callback);
           }
         },
         success: function (data, textStatus, xhr) {
           // No board found, new board created
-          board = data;
           callback(data);
         },
-        failure: function(res) {
-          console.log("POST failed: ", textStatus);
+        error: function(xhr, textStatus, errorThrown) {
+          console.log("POST failed: ", errorThrown, " with status: ", textStatus);
         }
       })
     },
-
 
     putBoard: function(board, callback) {
       $.ajax({
@@ -62,11 +60,11 @@ var ApiFacade = (function() {
         headers: {
           "Authentication": fbUser.access_token
         },
-        success: function(res) {
-          callback(res);
+        success: function(data, textStatus, xhr) {
+          callback(data);
         },
-        failure: function(res) {
-          
+        error: function(xhr, textStatus, errorThrown) {
+          console.log("PUT failed: ", errorThrown, " with status: ", textStatus);          
         }
       })
     }

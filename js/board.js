@@ -1,14 +1,23 @@
 var board = (function () {
 
   function save() {
+    ApiFacade.putBoard(function (payload) {
+      // TODO: use response here in some fashion? Error handling?
+    });
   }
 
   function load() {
-    ApiFacade.retrieveBoard(function (data) {
-      if (!this._id && data) {
-        this.extend(data);
-      }
-    });
+    // Don't make an API call if _id already set
+    if (!this._id) {
+      ApiFacade.retrieveBoard(function (payload) {
+        if (payload) {
+          $.extend(this, payload);
+        } else {
+          // TODO: handle error. Retry?
+          console.log("Empty payload in board.load()");
+        }
+      });
+    }
   }
 
   function addBubble() {
@@ -32,11 +41,4 @@ var board = (function () {
     removeConnection: removeConnection
   };
 })();
-
-Board.prototype.save() {
-  ApiFacade.putBoard(function (data) {
-
-  });
-}
-
 
