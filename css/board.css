@@ -117,3 +117,22 @@ canvas {
   top: 0;
   left: 0;
 }
+
+/*STOP PLAYING MUSIC BUTTON*/
+.stopButton {
+  margin-top: 1%;
+  left: 5%;
+  height: 5%;
+  width: 5%;
+  position: absolute;
+  z-index: 100;
+}
+
+.playButton {
+  margin-top: 1%;
+  left:10%;
+  height: 5%;
+  width: 5%;
+  position: absolute;
+  z-index: 100;
+}

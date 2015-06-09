@@ -9,6 +9,20 @@ var mySVG;
 $(document).ready(function() {
   facebookSdk(secureMain);
 
+ $('.stopButton').on( "click", function() {
+      var playing = true;
+      var music = document.getElementById("Drone");
+      if(playing == true){
+      music.muted = true;
+      };
+  });
+  $('.playButton').on( "click", function() {
+      var playing = false;
+      var music = document.getElementById("Drone");
+      if(playing == false){
+      music.muted = false;
+      };
+  });
 });
 
 
