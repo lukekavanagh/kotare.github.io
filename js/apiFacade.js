@@ -1,11 +1,16 @@
 var ApiFacade = (function() {
 
+  // Development (Rich's laptop)
   //var BACKEND_BASE_URI = 'http://localhost:5000/api/v1';
+  
+  // Development (isolated kotare.github.io backend)
+  //var BACKEND_BASE_URI = 'http://crudbrain.herokuapp.com/api/v1';
+
+  // PRODUCTION
   var BACKEND_BASE_URI = 'http://crudbrain.herokuapp.com/api/v1';
 
-  function getBoard (boardId) {
+  function getBoard (boardId, callback) {
     $.ajax({
-      async: false,
       contentType: 'application/json',
       url: BACKEND_BASE_URI + '/boards/' + boardId,
       headers: {
@@ -13,6 +18,7 @@ var ApiFacade = (function() {
       },
       success: function(data, textStatus, xhr){
         board = data;
+        callback(data);
       },
       failure: function(data, textStatus, xhr){
         console.log("GET failed: ", textStatus);
@@ -22,9 +28,8 @@ var ApiFacade = (function() {
 
   return {
 
-    retrieveBoard: function() {
+    retrieveBoard: function(callback) {
       $.ajax({
-        async: false,
         contentType: 'application/json',
         method: "POST",
         url: BACKEND_BASE_URI + '/boards',
@@ -33,23 +38,23 @@ var ApiFacade = (function() {
         },
         complete: function (xhr, textStatus) {
           if (xhr.status === 409) {
-            getBoard(fbUser.id);
+            getBoard(fbUser.id, callback);
           }
         },
         success: function (data, textStatus, xhr) {
           // No board found, new board created
           board = data;
+          callback(data);
         },
         failure: function(res) {
-          console.log("FAILURE");
+          console.log("POST failed: ", textStatus);
         }
       })
     },
 
 
-    putBoard: function(board) {
+    putBoard: function(board, callback) {
       $.ajax({
-        async: true,
         contentType: 'application/json',
         data: JSON.stringify(board),
         method: "PUT",
@@ -58,14 +63,12 @@ var ApiFacade = (function() {
           "Authentication": fbUser.access_token
         },
         success: function(res) {
-          this.response = res
-        }.bind(this),
+          callback(res);
+        },
         failure: function(res) {
-          console.log(res);
-          console.log("getfailure");
-        }.bind(this)
+          
+        }
       })
-      return this.response
     }
   };
 
