@@ -24,7 +24,6 @@ $(document).ready(function(){
 
   $('.stopButton').on( "click", function() {
       var playing = true;
-      console.log( "clicked stop button");
       var music = document.getElementById("Drone");
       if(playing == true){
       music.muted = true;
@@ -32,7 +31,6 @@ $(document).ready(function(){
   });
   $('.playButton').on( "click", function() {
       var playing = false;
-      console.log( "clicked play button");
       var music = document.getElementById("Drone");
       if(playing == false){
       music.muted = false;
