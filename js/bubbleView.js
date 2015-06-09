@@ -10,8 +10,8 @@ function renderBubble(bubble) {
   )
   console.log(bubble);
   $(".bubble:last ").offset({
-    top: bubble.location.left,
-    left: bubble.location.top
+    top: bubble.location.top,
+    left: bubble.location.left
   });
   $(".bubble:last").css({
     "width": bubble.size.width,
@@ -71,12 +71,12 @@ function renderInputOptions(e) {
     var $magicCameraInput = $('<input type="file" capture="camera" accept="image/*" id="takePictureField">')
     var $audioOption = $('<i id="audio" class="fa fa-microphone"></i>')
     var $videoOption = $('<i id="video" class="fa fa-video-camera"></i>')
-    var $drawOption = $('<i id="draw" class="fa fa-pencil"></i>')
+    var $imageOption = $('<i id="image" class="fa fa-picture-o"></i>')
     $inputOptionBox.append($textOption);
     $inputOptionBox.append($photoOption);
     $inputOptionBox.append($audioOption);
     $inputOptionBox.append($videoOption);
-    $inputOptionBox.append($drawOption);
+    $inputOptionBox.append($imageOption);
     $photoOption.append($magicCameraInput);
     $photoOption.append("<img id='yourimage'>");
     $('#board').append($inputOptionBox);
@@ -86,16 +86,24 @@ function renderInputOptions(e) {
     var $photoOption = $('#photo');
     var $audioOption = $('#audio')
     var $videoOption = $('#video')
-    var $drawOption = $('#draw')
+    var $imageOption = $('#image')
   }
 
   $inputOptionBox.show()
+
   $textOption.on('click', function(e){
     e.stopImmediatePropagation();
-    e.inputType = "text";
     $inputOptionBox.hide()
+    e.inputType = "text";
     createBubble(e)
   });
+
+  $imageOption.on('click', function(e) {
+    e.stopImmediatePropagation();
+    $inputOptionBox.hide()
+    e.inputType = "image";
+    showAddUrlForm(e)
+  })
 
   $photoOption.on('click', function(e) {
     e.stopImmediatePropagation()
@@ -113,14 +121,26 @@ function renderInputOptions(e) {
     $photoOption,
     $audioOption,
     $videoOption,
-    $drawOption
+    $imageOption
   ]
   animateOptions(options);
 }
 
+function showAddUrlForm(e) {
+  e.stopImmediatePropagation()
+  $form = $(
+    '<form id="imageUrl">' +
+      '<input type="text" id="sourceUrl">' +
+      '<input type="submit" value="yep">' +
+    '</form>'
+  )
+  $('#imageUrl')
+  console.log('show url form');
+}
+
 function animateOptions(options) {
   resetOptionPosition(options)
-  var iconSize = 16 // px
+  var iconSize = 16; // px
   // http://www.mathopenref.com/coordpolycalc.html for cartesian polygon coords below
   var finalCentrePositions = [
     [0,   -20],

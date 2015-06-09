@@ -3,7 +3,6 @@ var currentConnection = {
   startBubbleId: "",
   endBubbleId: ""
 };
-var board = new Board();
 var mySVG;
 
 $(document).ready(function() {
@@ -18,6 +17,22 @@ function secureMain() {
       fbUser = null;
       window.location = '/';
     });
+  });
+
+ $('.stopButton').on( "click", function() {
+      var playing = true;
+      var music = document.getElementById("Drone");
+      if(playing == true){
+      music.muted = true;
+      };
+  });
+
+  $('.playButton').on( "click", function() {
+      var playing = false;
+      var music = document.getElementById("Drone");
+      if(playing == false){
+      music.muted = false;
+      };
   });
 
   sphere();
@@ -45,12 +60,10 @@ function secureMain() {
 
   // Persist to db
   $('#board').on('mouseup', function () {
-    board.save();
+    console.log("JSON: ", JSON.stringify(board));
+    //board.save();
   });
-
-  picMain()
 }
-
 
 function createBubble(e){
   var guId = helper.guid();
