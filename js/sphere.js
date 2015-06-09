@@ -42,10 +42,10 @@ function sphere() {
     render(); // Start the rendering of the animation frames.
   // }, false);
 
-  // $('canvas:first').click(function (e) {
-  //   e.preventDefault();
-  //   console.log("Canvas clicked!");
-  //   console.log(location);
-  //   // location.assign(location.origin + '/views/board.html');
-  // });
+  $('canvas:first').click(function (e) {
+    e.preventDefault();
+    console.log("Canvas clicked!");
+    console.log(location);
+    // location.assign(location.origin + '/views/board.html');
+  });
 }
