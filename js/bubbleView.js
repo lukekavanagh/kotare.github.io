@@ -4,7 +4,7 @@ function renderBubble(bubble) {
       "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
     "</div>"
   )
-  
+
   $(".bubble:last ").offset({
     top: bubble.location.top,
     left: bubble.location.left
@@ -31,7 +31,7 @@ function renderBubble(bubble) {
       break;
     case "image":
       $content = $('<div class="content"></div>')
-      $image = $('<img src="'+bubble.sourceUrl+'"></img>')
+      $image = $('<img class="bubble-image" src="'+bubble.sourceUrl+'"></img>')
       $image.css({
         'max-height': '100%',
         'max-width': '100%',
@@ -70,15 +70,15 @@ function renderBubble(bubble) {
 
     if (board.connectionExists(clickedBubble, board.last())) {
       console.log("Board exists...");
-      board.removeConnection(clickedBubble, board.last()); 
+      board.removeConnection(clickedBubble, board.last());
       console.log("connection broken");
-    } 
-    
+    }
+
     else if (board.from()) {
       console.log("Complete connection...");
       board.completeConnection(clickedBubble);
-    } 
-    
+    }
+
     else {
       console.log("Starting connection...");
       board.startConnection(clickedBubble);
