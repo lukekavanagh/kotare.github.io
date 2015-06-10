@@ -251,28 +251,7 @@ top = pos - iconSize/2
   min-width: 100%;
 }
 
-#trashcan {
-  margin-top: 130%;
-  margin-left: -40%;
-  position: relative;
-/*  bottom: 5px;*/
-  z-index:1000;
-/*  margin-top: 800px;*/
-  /*height: 20px;*/
-}
 
-.logoTitle{
- margin-top: 135%;
-/* margin-right: -10%;*/
- z-index:1000;
-}
-
-.puzzle {
-  /*margin-top: 49%;
-  margin-right: 50%;*/
-  position: relative;
-  z-index:1000;
-}
 .link-image {
   max-height: 20px;
   max-width: 20px;
@@ -284,85 +263,55 @@ canvas {
   left: 0;
 }
 
-.logoTitle{
-  margin-right: 75%;
-  margin-top: 1%;
-  margin-left: 1%;
-
-
- /*margin-top: -0%;
- margin-right: -10%;*/
-}
-
 .puzzle {
-/*  margin-top: 10%;*/
- /* margin-right: 75%;
-  margin-top: .5%;
-  margin-left: 1%;*/
-
-}
-
-/*COPYRIGHT*/
-.copyright {
- /* margin-top: -2%;
-  margin-left: 90%;*/
+  margin-top: 12px;
+  z-index: 100;
   position: relative;
 
 }
 
+.copyright {
+ /* margin-top: -2%;
+  margin-left: 90%;*/
+
+  z-index: 100;
+
+}
+#trashcan {
+  margin-top: 800px;
+
+  z-index: 101;
+  position: absolute;
+
+}
+.logoTitle{
+  margin-right: 75%;
+  margin-top: 1%;
+  margin-left: 1%;
+  z-index: 100;
+
+}
+/*#trashcan {
+  margin-top: 130%;
+  margin-left: -40%;
+  position: reltative;
+  bottom: 5px;
+  z-index:10000000000;
+/*  margin-top: 800px;*/
+  /*height: 20px;*/
+}
+*/
 .board-footer {
   position: absolute;
   width : 100%;
   height: 100%;
-  margin-top: 300px;
+  margin-top: 200px;
+  z-index: 100;
 }
 
 .bubble-image {
   opacity: 100%;
 }
 
-@media screen and (max-width: 900px) and (min-width: 320px) {
-  #trashcan {
-    margin-top: 130%;
-    margin-left: -40%;
-    position: relative;
-    z-index:1000;
-  }
 
-  .logoTitle{
-   margin-top: 135%;
-   color: red;
-   z-index:1000;
-   font-size: 50px;
-  }
 
-  .copyright {
-    display:none;
-    position: relative;
-    z-index:1000;
-  }
-
-  .board-footer {
-    position: absolute;
-    z-index: 1000;
-    margin-top: 380px;
-  }
-}
-/*STOP PLAYING MUSIC BUTTON*/
-/*.stopButton {
-  margin-top: 1%;
-  left: 5%;
-  height: 5%;
-  width: 5%;
-  position: absolute;
-  z-index: 100;
-}
-
-.playButton {
-  margin-top: 1%;
-  left:10%;
-  height: 5%;
-  width: 5%;
-  position: absolute;
-  z-index: 100;
-}*/

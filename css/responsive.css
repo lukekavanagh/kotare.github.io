@@ -1,1 +1,28 @@
 
+@media screen and (max-width: 900px) and (min-width: 320px) {
+  #trashcan {
+    margin-top: 130%;
+    margin-left: -40%;
+    position: relative;
+    z-index:1000;
+  }
+
+  .logoTitle{
+   margin-top: 135%;
+   color: red;
+   z-index:1000;
+   font-size: 50px;
+  }
+
+  .copyright {
+    display:none;
+    position: relative;
+    z-index:1000;
+  }
+
+  .board-footer {
+    position: absolute;
+    z-index: 1000;
+    margin-top: 380px;
+  }
+}
