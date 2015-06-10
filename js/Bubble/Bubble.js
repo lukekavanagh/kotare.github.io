@@ -36,35 +36,64 @@ Bubble.prototype.populate = function ($bubble) {
   var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
   var self = this;
 
-  var $header = $('<div>').attr({ 
-    class: 'header' 
-  }).click( function(e) {
-    $(window).resize();
-  });
+  var $header = $('<div>')
+    .attr({ 
+      class: 'header' 
+    })
+    .click( function(e) {
+      $(window).resize();
+    }
+  );
 
-  var $link = $('<a>').attr({ 
-    class: 'link' 
-  });
+  var $link = $('<a>')
+    .attr({ 
+      class: 'link' 
+    }
+  );
+
+  $bubble
+    .on('click', $link, function () {
+      // For clarity: 'this' is the bubble div
+      self.connect(this.id);
+    }
+  );
+
   var $icon = $('<i>').attr({ class: 'fa fa-link link-image' });
-  var $content = $('<div>').attr({ 
-    class: 'content' 
-  }).css({
-    padding: paddingPercent + '%'
-  });
-  var $footer = $('<div>').attr({ class: 'footer' });
-  var $scrollUp = $('<a>').attr({ 
-    class: 'scrollUp', 
-    href: '#' 
-  }).html('&#9650');
-  var $scrollDown = $('<a>').attr({ 
-    class: 'scrollDown', 
-    href: '#' 
-  }).html('&#9660');
 
-  $bubble.on('click', $link, function (e) {
-    // Slightly confusing, but 'this' is the bubble div
-    self.connect(this.id);
-  });
+  var $content = $('<div>')
+    .attr({ 
+      class: 'content' 
+    })
+    .css({
+      padding: paddingPercent + '%'
+    }
+  );
+
+  var $footer = $('<div>').attr({ class: 'footer' });
+
+  var $scrollUp = $('<a>')
+    .attr({ 
+      class: 'scrollUp', 
+      href: '#' 
+    })
+    .html('&#9650')
+    .on('click', function (e) {
+      e.stopImmediatePropagation();
+      self.scrollUp($bubble)
+    }
+  );
+    
+  var $scrollDown = $('<a>')
+    .attr({ 
+      class: 'scrollDown', 
+      href: '#' 
+    })
+    .html('&#9660')
+    .on('click', function (e) {
+      e.stopImmediatePropagation();
+      self.scrollDown($bubble)
+    }
+  );
 
   this.specialise($content, paddingPercent);
   $bubble.append(
