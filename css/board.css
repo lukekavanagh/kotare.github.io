@@ -5,11 +5,13 @@ html, body { position: fixed; height: 100%; width: 100%; }
 }
 
 #board {
-  font-family: monospace;
+  font-family: 'Dosis', 'Lato', sans-serif;
   background-color: black;
   margin: 0;
   padding: 0;
   position: absolute;
+
+
 }
 
 #inputOptionBox {
@@ -195,6 +197,7 @@ top = pos - iconSize/2
   overflow: hidden;
   border-radius: 50%;
   background: radial-gradient(circle at 33% 33%, white, #000);
+  font-family:
 }
 
 .bubble .header {
@@ -281,24 +284,69 @@ canvas {
   left: 0;
 }
 
+.logoTitle{
+  margin-right: 75%;
+  margin-top: 1%;
+  margin-left: 1%;
+
+
+ /*margin-top: -0%;
+ margin-right: -10%;*/
+}
+
+.puzzle {
+/*  margin-top: 10%;*/
+ /* margin-right: 75%;
+  margin-top: .5%;
+  margin-left: 1%;*/
+
+}
+
+/*COPYRIGHT*/
 .copyright {
-  /*margin-top: -3%;
-  margin-left: 80%;*/
+ /* margin-top: -2%;
+  margin-left: 90%;*/
   position: relative;
-  z-index:1000;
+
 }
 
 .board-footer {
   position: absolute;
-  /*width : 100%;
-  height: 0;*/
-  z-index: 1000;
-  margin-top: 380px;
- /*margin-bottom: 300px;*/
+  width : 100%;
+  height: 100%;
+  margin-top: 300px;
 }
 
 .bubble-image {
   opacity: 100%;
+}
+
+@media screen and (max-width: 900px) and (min-width: 320px) {
+  #trashcan {
+    margin-top: 130%;
+    margin-left: -40%;
+    position: relative;
+    z-index:1000;
+  }
+
+  .logoTitle{
+   margin-top: 135%;
+   color: red;
+   z-index:1000;
+   font-size: 50px;
+  }
+
+  .copyright {
+    display:none;
+    position: relative;
+    z-index:1000;
+  }
+
+  .board-footer {
+    position: absolute;
+    z-index: 1000;
+    margin-top: 380px;
+  }
 }
 /*STOP PLAYING MUSIC BUTTON*/
 /*.stopButton {
