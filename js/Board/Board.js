@@ -23,15 +23,22 @@ Board.prototype.loadCallback = function (payload) {
         var bubble = new Bubble();
         $.extend(this.bubbles[i], bubble);
       }
+    } else {
+      this.bubbles = [];
     }
+
     if (this.connections) {
       for (var i = 0; i < this.connections.length; i++) {
         var connection = new Connection();
         $.extend(this.connections[i], connection);
       }
+    } else {
+      this.connections = [];
     }
 
     this.render();
+
+    // TODO: remove once empty!
     eventHandlers();
   } else {
     // TODO: handle error. Retry?
