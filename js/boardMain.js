@@ -72,14 +72,7 @@ function createBubble(e){
 
   var bubble = new Bubble(args);
   renderBubble(bubble);
-  board.addBubble({
-    type: bubble.type,
-    bubbleId: bubble.bubbleId,
-    sourceUrl: bubble.sourceUrl,
-    content: bubble.content,
-    size: bubble.size,
-    location: bubble.location
-  });
+  board.addBubble(bubble);
 }
 
 function facebookSdk(callback) {

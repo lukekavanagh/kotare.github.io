@@ -113,12 +113,11 @@ function renderBubble(bubble) {
 function renderInputOptions(e) {
   if ($('#inputOptionBox').length === 0) {
     var $inputOptionBox = $('<div id="inputOptionBox"></div>');
-    var $textOption = $('<i id="text" class="fa fa-align-left"></i>');
-    var $photoOption = $('<i id="photo" class="fa fa-camera"></i>');
-    var $magicCameraInput = $('<input type="file" capture="camera" accept="image/*" id="takePictureField">')
-    var $audioOption = $('<i id="audio" class="fa fa-microphone"></i>')
-    var $videoOption = $('<i id="video" class="fa fa-video-camera"></i>')
-    var $imageOption = $('<i id="image" class="fa fa-picture-o"></i>')
+    var $textOption = $('<i id="text" class="fa option fa-align-left"></i>');
+    var $photoOption = $('<i id="photo" class="fa option fa-camera"></i>');
+    var $audioOption = $('<i id="audio" class="fa option fa-microphone"></i>')
+    var $videoOption = $('<i id="video" class="fa option fa-video-camera"></i>')
+    var $imageOption = $('<i id="image" class="fa option fa-picture-o"></i>')
     $inputOptionBox.append($textOption);
     $inputOptionBox.append($photoOption);
     $inputOptionBox.append($audioOption);
@@ -172,7 +171,7 @@ function renderInputOptions(e) {
     $imageOption
   ]
   animateOptions(options);
-  $('.fa').addClass('fa-2x') //fa-2x/3x/4x/5x
+  $('.option').addClass('fa-2x') //fa-2x/3x/4x/5x
 }
 
 function showAddUrlForm(e) {
