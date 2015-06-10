@@ -256,6 +256,16 @@ top = pos - iconSize/2
 
 }
 
+.logoTitle{
+ margin-top: 50%;
+ margin-right: -10%;
+}
+
+.puzzle {
+  margin-top: 49%;
+  margin-right: 50%;
+  position: relative;
+}
 .link-image {
   max-height: 20px;
   max-width: 20px;
