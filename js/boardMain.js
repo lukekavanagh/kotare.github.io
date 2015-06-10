@@ -1,4 +1,5 @@
 var mySVG;
+board = new Board();
 
 $(document).ready(function() {
   facebookSdk(secureMain);
