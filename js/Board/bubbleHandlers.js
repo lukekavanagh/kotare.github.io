@@ -1,26 +1,44 @@
-Board.prototype.addBubble = function () {
-//function createBubble(e){
-  //var args = {
-    //location: {
-      //left: e.pageX,
-      //top: e.pageY
-    //}
-  //}
-
-  //switch(args.inputType){
-    //case "image":
-      //args.sourceUrl = e.sourceUrl;
-      //break;
-  //}
-
-  //var bubble = new Bubble(args);
-  //renderBubble(bubble);
-  //board.addBubble(bubble);
-//}
-
+Board.prototype.addBubble = function (e) {
+  var bubble = new Bubble();
+  $.extend(bubble, {
+    location: {
+      left: e.pageX,
+      top: e.pageY
+    },
+    size: {
+      height: "160px",
+      width: "160px"
+    },
+    type: e.inputType,
+    sourceUrl: "" || e.sourceUrl
+  });
+  this.bubbles.push(bubble);
+  this.save();
+  bubble.render();
 }
 
-Board.prototype.removeBubble = function () {
+Board.prototype.removeBubble = function (id) {
+  for (var i = 0; i < this.bubbles.length; i++) {
+    if (id === this.bubbles[i].bubbleId) {
+
+      // Delete all connections to this bubble
+      for (var j = 0; j < this.connections.length; j++) {
+        if (this.bubbles[i].bubbleId === this.connections[j].startBubbleId ||
+            this.bubbles[i].bubbleId === this.connections[j].endBubbleId) {
+
+          this.connections.splice(j, 1);
+          mySVG.removeLine({ 
+            left_node: '#' + this.connections[j].startBubbleId,
+            right_node: '#' + this.connections[j].endBubbleId
+          });
+        }
+      }
+
+      this.bubbles.splice(i, 1);
+      this.save();
+      return;
+    }
+  }
 }
 
 Board.prototype.updateBubble = function (e, ui) {

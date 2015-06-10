@@ -40,6 +40,26 @@ function renderInputOptions(e) {
   ]
   animateOptions(options);
   $('.option').addClass('fa-2x') //fa-2x/3x/4x/5x
+
+  $textOption.on('click', function(e){
+    e.stopImmediatePropagation();
+    $inputOptionBox.hide()
+    e.inputType = "text";
+    board.addBubble(e);
+  });
+
+  $imageOption.on('click', function(e) {
+    e.stopImmediatePropagation();
+    $inputOptionBox.hide()
+    e.inputType = "image";
+    showAddUrlForm(e)
+  })
+
+  $photoOption.on('click', function(e) {
+    e.stopImmediatePropagation()
+    $inputOptionBox.hide()
+  })
+
 }
 
 function showAddUrlForm(e) {

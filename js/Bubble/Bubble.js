@@ -110,6 +110,7 @@ Bubble.prototype.populate = function ($bubble) {
     $content, 
     $footer.append($scrollUp, $scrollDown)
   );
+
 }
 
 Bubble.prototype.specialise = function ($content, paddingPercent) {
