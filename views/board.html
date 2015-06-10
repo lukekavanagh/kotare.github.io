@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Mind Map</title>
+
     <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="../css/splash.css">
 
@@ -33,6 +34,7 @@
   </head>
 
   <body id="board">
+
     <script src="../js/sound.js"></script>
     <audio id='Drone' src='../sound/Drone.mp3'></audio>
 
@@ -40,14 +42,18 @@
         <a href="" id="menuToggle" title="show menu">
           <span class="navClosed"><i>show menu</i></span>
         </a>
-        <a id="logoutButton" class="image1" title="Item 1">FB</a>
-        <a class="stopButton Item 2">Pause Music</a>
-        <a class="playButton Item 3">Play Music</a>
+        <a id="logoutButton" class="image1" title="Item 1">Logout</a>
+        <a class="stopButton">Pause Music</a>
+        <a class="playButton">Play Music</a>
     </nav>
 
- <!--    <button class='stopButton' type='button'>Pause Music</button>
-    <button class='playButton' type='button'>Play Music</button>
-    <div id="logoutButton"></div> -->
-    <div id="trashcan"><img src="../images/trashcan.png" alt="trashcan"></div>
+    <footer>
+        <div>
+            <div id="trashcan"><img src="../images/trash.png" alt="trashcan" ></div>
+        </div>
+        <div>
+            <p class="copyright">&copy; 2015 inkling.space<p>
+        </div>
+  </footer>
   </body>
 </html>

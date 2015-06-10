@@ -184,11 +184,12 @@ top = pos - iconSize/2
 
 .bubble {
   position: absolute;
-  background-color: #A269DB;
-  box-shadow: -2px 2px 5px #555;
+  background-color: white;
+  opacity: 0.4;
+  box-shadow: -2px 2px 5px white;
   overflow: hidden;
   border-radius: 50%;
-  background: radial-gradient(circle at 33% 33%, #5cabff, #000);
+  background: radial-gradient(circle at 33% 33%, white, #000);
 }
 
 .bubble .header {
@@ -237,8 +238,10 @@ top = pos - iconSize/2
 
 #trashcan {
   position: absolute;
-  bottom: 2px;
+/*  bottom: 5px;*/
   z-index:100;
+  margin-top: 1500px;
+
 }
 
 .link-image {
@@ -252,8 +255,25 @@ canvas {
   left: 0;
 }
 
+.copyright {
+  margin-top: -3%;
+  margin-left: 80%;
+  position: absolute;
+
+}
+
+
+footer {
+  position: absolute;
+  width : 100%;
+  height: 100%;
+  margin-top: -3px;
+
+
+}
+
 /*STOP PLAYING MUSIC BUTTON*/
-.stopButton {
+/*.stopButton {
   margin-top: 1%;
   left: 5%;
   height: 5%;
@@ -269,4 +289,4 @@ canvas {
   width: 5%;
   position: absolute;
   z-index: 100;
-}
+}*/

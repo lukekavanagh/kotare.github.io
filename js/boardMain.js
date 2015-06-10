@@ -21,6 +21,7 @@ function secureMain() {
 
 
  $('.stopButton').on( "click", function() {
+
     var playing = true;
     var music = document.getElementById("Drone");
     if(playing == true){
