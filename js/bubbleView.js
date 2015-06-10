@@ -1,25 +1,62 @@
 function renderBubble(bubble) {
   $('#board').append(
     "<div class='bubble' id=" + bubble.bubbleId + "> <div class='header'>" +
-    "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
-    "<div class='content' contentEditable='true'></div>"+
-    "<div class='footer'>" +
-    "<a class='scrollUp' href='#'> &#9650 </a>" +
-    "<a class='scrollDown' href='#'> &#9660 </a>" +
-    "</div></div>"
+      "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
+    "</div>"
   )
+  
   $(".bubble:last ").offset({
     top: bubble.location.top,
     left: bubble.location.left
   });
+
+  var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
+
+  switch(bubble.type) {
+    case "text":
+      $content = $("<div class='content' contentEditable='true'>"+bubble.content+"</div>")
+      borderSizeStopOverflowTop = paddingPercent + 15
+      borderSizeStopOverflowBottom = paddingPercent + 5
+      $content.css({
+        'border-top': borderSizeStopOverflowTop + 'px solid transparent',
+        'border-bottom': borderSizeStopOverflowBottom + 'px solid transparent'
+      })
+      $(".bubble:last").append($content);
+      $(".bubble:last").append(
+        "<div class='footer'>" +
+          "<a class='scrollUp' href='#'> &#9650 </a>" +
+          "<a class='scrollDown' href='#'> &#9660 </a>" +
+        "</div>"
+      );
+      break;
+    case "image":
+      $content = $('<div class="content"></div>')
+      $image = $('<img src="'+bubble.sourceUrl+'"></img>')
+      $image.css({
+        'max-height': '100%',
+        'max-width': '100%',
+      })
+      $content.append($image);
+      $(".bubble:last").append($content);
+      break;
+  }
+  $(".bubble:last .content").css({'padding': paddingPercent + '%'})
+
   $(".bubble:last").css({
     "width": bubble.size.width,
     "height": bubble.size.height
   });
   $('.bubble:last').draggable({
-    handle: ".header"
+    handle: ".header",
+    stop: function (e, ui) {
+      board.updateBubble(e, ui);
+    }
   });
-  $('.bubble:last').resizable();
+  $('.bubble:last').resizable({
+    stop: function (e, ui) {
+      board.updateBubble (e, ui);
+    }
+  });
   $('.bubble:last .content').append(bubble.content);
 
   $('.header').click( function(e) {
@@ -28,22 +65,24 @@ function renderBubble(bubble) {
 
   $('.link').click( function(e) {
     e.stopImmediatePropagation();
-    if (!connectionInProgress){
-      currentConnection.startBubbleId = $(this).parent().parent().attr('id');
-      connectionInProgress = true;
-    } else if(connectionRemover(currentConnection.startBubbleId, $(this).parent().parent().attr('id')) == "removed"){
+    var clickedBubble = $(this).parent().parent().attr('id');
+    console.log("From: ", board.from(), " last: ", board.last(), " clicked: ", clickedBubble);
+
+    if (board.connectionExists(clickedBubble, board.last())) {
+      console.log("Board exists...");
+      board.removeConnection(clickedBubble, board.last()); 
       console.log("connection broken");
-      connectionInProgress = false;
-    } else {
-      currentConnection.endBubbleId = $(this).parent().parent().attr('id');
-      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, mySVG);
-      connectionInProgress = false;
-      board.connections.push({
-        startBubbleId: currentConnection.startBubbleId,
-        endBubbleId: currentConnection.endBubbleId
-      });
-      currentConnection.startBubbleId = "";
-      currentConnection.endBubbleId = "";
+    } 
+    
+    else if (board.from()) {
+      console.log("Complete connection...");
+      board.completeConnection(clickedBubble);
+    } 
+    
+    else {
+      console.log("Starting connection...");
+      board.startConnection(clickedBubble);
+      console.log("board.fromId: ", board.from());
     }
   });
 
@@ -76,7 +115,7 @@ function renderInputOptions(e) {
     $inputOptionBox.append($audioOption);
     $inputOptionBox.append($videoOption);
     $inputOptionBox.append($imageOption);
-    $photoOption.append($magicCameraInput);
+    // $photoOption.append($magicCameraInput);
     $photoOption.append("<img id='yourimage'>");
     $('#board').append($inputOptionBox);
   } else {
@@ -123,6 +162,7 @@ function renderInputOptions(e) {
     $imageOption
   ]
   animateOptions(options);
+  $('.fa').addClass('fa-2x') //fa-2x/3x/4x/5x
 }
 
 function showAddUrlForm(e) {
@@ -141,7 +181,10 @@ function showAddUrlForm(e) {
   $('#board').append($form);
   $('#sourceUrl').focus();
   console.log($form);
-  $form.submit(function(){addUrlToModel(e)})
+  $form.submit(function(eSubmit){
+    eSubmit.preventDefault();
+    addUrlToModel(e);
+  })
 }
 
 function addUrlToModel(e) {
@@ -156,6 +199,7 @@ function addUrlToModel(e) {
 function animateOptions(options) {
   resetOptionPosition(options)
   var iconSize = 16; // px
+  var scale = 2.5
   // http://www.mathopenref.com/coordpolycalc.html for cartesian polygon coords below
   var finalCentrePositions = [
     [0,   -20],
@@ -166,7 +210,7 @@ function animateOptions(options) {
   ]
   var finalTopLeftCoords = finalCentrePositions.map(function(el) {
     return el.map(function(coord) {
-      return coord - iconSize/2
+      return (coord - iconSize/2) * scale
     });
   });
   for (var i = 0; i < finalTopLeftCoords.length; i++) {
