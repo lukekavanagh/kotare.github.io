@@ -1,5 +1,9 @@
 html, body { position: fixed; height: 100%; width: 100%; }
 
+* {
+  box-sizing: border-box;
+}
+
 #board {
   font-family: monospace;
   background-color: black;
@@ -17,37 +21,6 @@ html, body { position: fixed; height: 100%; width: 100%; }
   position: absolute;
 }
 
-/*
-calculate polygon cartesian coordinates
-http://www.mathopenref.com/coordpolycalc.html
-
-
-
-iconSize = 16 px // (fontAwesome icon, size easily changed by adding size class!)
-left = pos - iconSize/2
-top = pos - iconSize/2
-*/
-/*#photo {
-  left: -8px;
-  top: -24px;
-}
-#audio {
-  left: 11px;
-  top: -14px;
-}
-#draw {
-  left: 4px;
-  top: 8px;
-}
-#video {
-  left: -20px;
-  top: 8px;
-}
-#text {
-  left: -27px;
-  top: -14px;
-}*/
-
 .bubble {
   position: absolute;
   background-color: #A269DB;
@@ -58,6 +31,9 @@ top = pos - iconSize/2
 }
 
 .bubble .header {
+  position: absolute;
+  z-index: 200;
+  width: 100%;
   text-align: center;
   padding: 2px;
   min-height: 20px;
@@ -84,8 +60,12 @@ top = pos - iconSize/2
 }
 
 .bubble .content {
-  padding: 20px;
-  height: 70px;
+  /*padding: 20px;*/
+  /*height: 70px;*/
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   outline: none;
   overflow: hidden;
 }
