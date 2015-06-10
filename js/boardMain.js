@@ -37,6 +37,7 @@ function secureMain() {
   });
 
   sphere();
+  nav();
   mySVG = $('body').connect();
 
   board.load();
