@@ -1,8 +1,3 @@
-var connectionInProgress = false;
-var currentConnection = {
-  startBubbleId: "",
-  endBubbleId: ""
-};
 var mySVG;
 
 $(document).ready(function() {
@@ -42,6 +37,7 @@ function secureMain() {
   board.load();
 
   $("#board").on("click", renderInputOptions);
+
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
   });
@@ -54,9 +50,11 @@ function secureMain() {
   });
 
   // Persist position and size changes after a drag event.
-  $('.bubble').on('dragstop', function (e) {
-    board.updateBubble(e);
-    board.save();
+  $('.bubble').draggable({
+    stop: function (e, ui) {
+      console.log(e);
+      board.updateBubble(e);
+    }
   });
 
   // Persist content changes

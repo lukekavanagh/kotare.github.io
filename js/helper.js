@@ -11,23 +11,3 @@ var helper= {
 }
 
 
-function connectionRemover(bubbleOneId, bubbleTwoId){
-	var links = board.connections;
-	for (var i=0; i < links.length; i++) {
-    if ((links[i].startBubbleId == bubbleOneId &&
-      links[i].endBubbleId == bubbleTwoId) ||
-      (links[i].endBubbleId == bubbleOneId &&
-      links[i].startBubbleId == bubbleTwoId)) {
-    	links.splice(i, 1);
-
-      // Update canvas
-      mySVG.removeLine({
-        left_node: '#' + bubbleOneId,
-        right_node: '#' + bubbleTwoId
-      });
-      mySVG.redrawLines();
-
-      return "removed";
-    }
-	}
-}
