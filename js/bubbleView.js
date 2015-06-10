@@ -19,10 +19,14 @@ function renderBubble(bubble) {
   $('.bubble:last').draggable({
     handle: ".header",
     stop: function (e, ui) {
-      board.updateBubble(e);
+      board.updateBubble(e, ui);
     }
   });
-  $('.bubble:last').resizable();
+  $('.bubble:last').resizable({
+    stop: function (e, ui) {
+      board.updateBubble (e, ui);
+    }
+  });
   $('.bubble:last .content').append(bubble.content);
 
   $('.header').click( function(e) {

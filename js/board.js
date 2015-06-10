@@ -69,12 +69,20 @@ var board = (function () {
     return boardData.bubbles;
   }
 
-  function updateBubble(e) {
+  function updateBubble(e, ui) {
+    console.log(e, ui);
     for (var i = 0; i < boardData.bubbles.length; i++) {
       if (e.target.id === boardData.bubbles[i].bubbleId) {
         // TODO: bubble position might be a bit off?
-        boardData.bubbles[i].location.top = e.pageY;
-        boardData.bubbles[i].location.left = e.pageX;
+        boardData.bubbles[i].location.top = ui.position.top;
+        boardData.bubbles[i].location.left = ui.position.left;
+
+        // Draggable event
+        if (ui.size) {
+          boardData.bubbles[i].size.width = ui.size.width;
+          boardData.bubbles[i].size.height = ui.size.height;
+        }
+
         save();
       }
     }

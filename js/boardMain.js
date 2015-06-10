@@ -49,14 +49,6 @@ function secureMain() {
     }
   });
 
-  // Persist position and size changes after a drag event.
-  $('.bubble').draggable({
-    stop: function (e, ui) {
-      console.log(e);
-      board.updateBubble(e);
-    }
-  });
-
   // Persist content changes
   $('.content').on('input cut copy paste', function (e) {
     board.updateBubble(e);
