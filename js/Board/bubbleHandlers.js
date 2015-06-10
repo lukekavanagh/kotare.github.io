@@ -1,4 +1,23 @@
 Board.prototype.addBubble = function () {
+//function createBubble(e){
+  //var args = {
+    //location: {
+      //left: e.pageX,
+      //top: e.pageY
+    //}
+  //}
+
+  //switch(args.inputType){
+    //case "image":
+      //args.sourceUrl = e.sourceUrl;
+      //break;
+  //}
+
+  //var bubble = new Bubble(args);
+  //renderBubble(bubble);
+  //board.addBubble(bubble);
+//}
+
 }
 
 Board.prototype.removeBubble = function () {

@@ -1,8 +1,8 @@
 function Bubble (){ }
 
 Bubble.prototype.render = function() {
-
   var $board = $('#board');
+
   var $bubble = $('<div>').attr({
     id: this.bubbleId,
     class: 'bubble'
@@ -12,18 +12,39 @@ Bubble.prototype.render = function() {
   }).css({
     'width': this.size.width,
     'height': this.size.height
+  }).draggable({
+    handle: ".header",
+    stop: function (e, ui) {
+      // Persist position changes
+      board.updateBubble(e, ui);
+    }
+  }).resizable({
+    stop: function (e, ui) {
+      // Persist size changes
+      board.updateBubble (e, ui);
+    }
+  }).on('blur', function (e) {
+    // Persist content changes
+    board.updateContent($(e.target).parent());
   });
 
   this.populate($bubble);
-
   $board.append($bubble);
 }
 
 Bubble.prototype.populate = function ($bubble) {
   var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
+  var self = this;
 
-  var $header = $('<div>').attr({ class: 'header' });
-  var $link = $('<a>').attr({ class: 'link' });
+  var $header = $('<div>').attr({ 
+    class: 'header' 
+  }).click( function(e) {
+    $(window).resize();
+  });
+
+  var $link = $('<a>').attr({ 
+    class: 'link' 
+  });
   var $icon = $('<i>').attr({ class: 'fa fa-link link-image' });
   var $content = $('<div>').attr({ 
     class: 'content' 
@@ -40,8 +61,12 @@ Bubble.prototype.populate = function ($bubble) {
     href: '#' 
   }).html('&#9660');
 
-  this.specialise($content, paddingPercent);
+  $bubble.on('click', $link, function (e) {
+    // Slightly confusing, but 'this' is the bubble div
+    self.connect(this.id);
+  });
 
+  this.specialise($content, paddingPercent);
   $bubble.append(
     $header.append($link.append($icon)), 
     $content, 
@@ -72,25 +97,6 @@ Bubble.prototype.specialise = function ($content, paddingPercent) {
       break;
   }
 }
-
-//function createBubble(e){
-  //var args = {
-    //location: {
-      //left: e.pageX,
-      //top: e.pageY
-    //}
-  //}
-
-  //switch(args.inputType){
-    //case "image":
-      //args.sourceUrl = e.sourceUrl;
-      //break;
-  //}
-
-  //var bubble = new Bubble(args);
-  //renderBubble(bubble);
-  //board.addBubble(bubble);
-//}
 
 function guid() {
   function s4() {

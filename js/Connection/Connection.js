@@ -6,3 +6,5 @@ Connection.prototype.render = function (svg) {
     right_node: '#' + this.endBubbleId
   });
 }
+
+var lastClickId = null;
