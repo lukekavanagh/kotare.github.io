@@ -3,11 +3,20 @@
 }
 
 #board {
+<<<<<<< HEAD
+  font-family: 'Dosis', 'Lato', sans-serif;
+=======
+>>>>>>> development
   background-color: black;
   margin: 0;
   padding: 0;
   position: absolute;
+<<<<<<< HEAD
+
+
+=======
   color: white;
+>>>>>>> development
 }
 
 #inputOptionBox {
@@ -60,6 +69,9 @@ top = pos - iconSize/2
   overflow: hidden;
   border-radius: 50%;
   background: radial-gradient(circle at 33% 33%, white, #000);
+  font-family: 'Dosis', 'Lato', sans-serif;
+  color: black;
+  font-weight: bold;
 }
 
 .bubble .header {
@@ -105,28 +117,7 @@ top = pos - iconSize/2
   min-width: 100%;
 }
 
-#trashcan {
-  margin-top: 130%;
-  margin-left: -40%;
-  position: relative;
-/*  bottom: 5px;*/
-  z-index:1000;
-/*  margin-top: 800px;*/
-  /*height: 20px;*/
-}
 
-.logoTitle{
- margin-top: 135%;
-/* margin-right: -10%;*/
- z-index:1000;
-}
-
-.puzzle {
-  /*margin-top: 49%;
-  margin-right: 50%;*/
-  position: relative;
-  z-index:1000;
-}
 .link-image {
   max-height: 20px;
   max-width: 20px;
@@ -140,40 +131,55 @@ canvas {
   left: 0;
 }
 
-.copyright {
-  /*margin-top: -3%;
-  margin-left: 80%;*/
+.puzzle {
+  margin-top: 12px;
+  z-index: 100;
   position: relative;
-  z-index:1000;
+
 }
 
+.copyright {
+ /* margin-top: -2%;
+  margin-left: 90%;*/
+
+  z-index: 100;
+
+}
+#trashcan {
+  margin-top: 800px;
+
+  z-index: 101;
+  position: absolute;
+
+}
+.logoTitle{
+  margin-right: 75%;
+  margin-top: 1%;
+  margin-left: 1%;
+  z-index: 100;
+
+}
+/*#trashcan {
+  margin-top: 130%;
+  margin-left: -40%;
+  position: reltative;
+  bottom: 5px;
+  z-index:10000000000;
+/*  margin-top: 800px;*/
+  /*height: 20px;*/
+}
+*/
 .board-footer {
   position: absolute;
-  /*width : 100%;
-  height: 0;*/
-  z-index: 1000;
-  margin-top: 380px;
- /*margin-bottom: 300px;*/
+  width : 100%;
+  height: 100%;
+  margin-top: 200px;
+  z-index: 100;
 }
 
 .bubble-image {
   opacity: 100%;
 }
-/*STOP PLAYING MUSIC BUTTON*/
-/*.stopButton {
-  margin-top: 1%;
-  left: 5%;
-  height: 5%;
-  width: 5%;
-  position: absolute;
-  z-index: 100;
-}
 
-.playButton {
-  margin-top: 1%;
-  left:10%;
-  height: 5%;
-  width: 5%;
-  position: absolute;
-  z-index: 100;
-}*/
+
+
