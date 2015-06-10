@@ -4,7 +4,7 @@ function renderBubble(bubble) {
       "<a class='link'><img class='link-image' src='../images/add_link.png'></a></div>" +
     "</div>"
   )
-  
+
   $(".bubble:last ").offset({
     top: bubble.location.top,
     left: bubble.location.left
@@ -31,7 +31,7 @@ function renderBubble(bubble) {
       break;
     case "image":
       $content = $('<div class="content"></div>')
-      $image = $('<img src="'+bubble.sourceUrl+'"></img>')
+      $image = $('<img class="bubble-image" src="'+bubble.sourceUrl+'"></img>')
       $image.css({
         'max-height': '100%',
         'max-width': '100%',
@@ -46,11 +46,27 @@ function renderBubble(bubble) {
     "width": bubble.size.width,
     "height": bubble.size.height
   });
+
+  // Persist position changes
   $('.bubble:last').draggable({
-    handle: ".header"
+    handle: ".header",
+    stop: function (e, ui) {
+      board.updateBubble(e, ui);
+    }
   });
-  $('.bubble:last').resizable();
+
+  // Persist size changes
+  $('.bubble:last').resizable({
+    stop: function (e, ui) {
+      board.updateBubble (e, ui);
+    }
+  });
   $('.bubble:last .content').append(bubble.content);
+
+  // Persist content changes
+  $('.bubble:last .content').on('blur', function (e) {
+    board.updateContent($(e.target).parent());
+  });
 
   $('.header').click( function(e) {
     $(window).resize();
@@ -58,22 +74,24 @@ function renderBubble(bubble) {
 
   $('.link').click( function(e) {
     e.stopImmediatePropagation();
-    if (!connectionInProgress){
-      currentConnection.startBubbleId = $(this).parent().parent().attr('id');
-      connectionInProgress = true;
-    } else if(connectionRemover(currentConnection.startBubbleId, $(this).parent().parent().attr('id')) == "removed"){
+    var clickedBubble = $(this).parent().parent().attr('id');
+    console.log("From: ", board.from(), " last: ", board.last(), " clicked: ", clickedBubble);
+
+    if (board.connectionExists(clickedBubble, board.last())) {
+      console.log("Board exists...");
+      board.removeConnection(clickedBubble, board.last());
       console.log("connection broken");
-      connectionInProgress = false;
-    } else {
-      currentConnection.endBubbleId = $(this).parent().parent().attr('id');
-      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, mySVG);
-      connectionInProgress = false;
-      board.connections.push({
-        startBubbleId: currentConnection.startBubbleId,
-        endBubbleId: currentConnection.endBubbleId
-      });
-      currentConnection.startBubbleId = "";
-      currentConnection.endBubbleId = "";
+    }
+
+    else if (board.from()) {
+      console.log("Complete connection...");
+      board.completeConnection(clickedBubble);
+    }
+
+    else {
+      console.log("Starting connection...");
+      board.startConnection(clickedBubble);
+      console.log("board.fromId: ", board.from());
     }
   });
 

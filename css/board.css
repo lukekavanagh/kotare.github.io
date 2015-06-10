@@ -21,13 +21,180 @@ html, body { position: fixed; height: 100%; width: 100%; }
   position: absolute;
 }
 
+
+a {
+  text-decoration: none;
+}
+
+a i {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}
+
+
+nav {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  position: fixed;
+  right: -300px;
+  top: 0;
+  -moz-transition: right 0.2s linear;
+  -o-transition: right 0.2s linear;
+  -webkit-transition: right 0.2s linear;
+  transition: right 0.2s linear;
+  width: 300px;
+  z-index: 9001;
+  /* IT'S OVER 9000! */
+  font-family: 'Dosis', 'Lato', sans-serif;
+  font-weight: 150;
+  z-index: 100;
+}
+nav #menuToggle {
+  background: rgba(0, 0, 0, 0.6);
+  display: block;
+  position: relative;
+  height: 40px;
+  left: -50px;
+  top: 75px;
+  width: 50px;
+}
+nav #menuToggle span {
+  background: white;
+  display: block;
+  height: 10%;
+  left: 10%;
+  position: absolute;
+  top: 45%;
+  width: 80%;
+}
+nav #menuToggle span:before, nav #menuToggle span:after {
+  background: white;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: -250%;
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  width: 100%;
+}
+nav #menuToggle span:after {
+  top: 250%;
+}
+nav a:nth-child(n+2) {
+  color: white;
+  display: block;
+  font-size: 2.5em;
+  margin: 30px 0 30px 30px;
+}
+
+nav a:nth-child(n+2):after {
+  background: #FF4D4D;
+  content: '';
+  display: block;
+  height: 2px;
+  -moz-transition: width 0.2s;
+  -o-transition: width 0.2s;
+  -webkit-transition: width 0.2s;
+  transition: width 0.2s;
+  width: 0;
+}
+nav a:nth-child(n+2):hover:after {
+  width: 100%;
+}
+
+.open {
+  right: 0;
+}
+.open #menuToggle span {
+  background: transparent;
+  left: 10%;
+  top: 45%;
+}
+.open #menuToggle span:before, .open #menuToggle span:after {
+  background: white;
+  top: 0;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.open #menuToggle span:after {
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#menuToggle .navClosed {
+  -moz-transition: background 0.1s linear;
+  -o-transition: background 0.1s linear;
+  -webkit-transition: background 0.1s linear;
+  transition: background 0.1s linear;
+}
+#menuToggle .navClosed:before, #menuToggle .navClosed:after {
+  -moz-transition: top 0.2s linear 0.1s, -moz-transform 0.2s linear 0.1s;
+  -o-transition: top 0.2s linear 0.1s, -o-transform 0.2s linear 0.1s;
+  -webkit-transition: top 0.2s linear, -webkit-transform 0.2s linear;
+  -webkit-transition-delay: 0.1s, 0.1s;
+  transition: top 0.2s linear 0.1s, transform 0.2s linear 0.1s;
+}
+#menuToggle .navOpen {
+  -moz-transition: background 0.1s linear 0.2s;
+  -o-transition: background 0.1s linear 0.2s;
+  -webkit-transition: background 0.1s linear;
+  -webkit-transition-delay: 0.2s;
+  transition: background 0.1s linear 0.2s;
+}
+#menuToggle .navOpen:before, #menuToggle .navOpen:after {
+  -moz-transition: top 0.2s linear, -moz-transform 0.2s linear;
+  -o-transition: top 0.2s linear, -o-transform 0.2s linear;
+  -webkit-transition: top 0.2s linear, -webkit-transform 0.2s linear;
+  transition: top 0.2s linear, transform 0.2s linear;
+}
+/*
+calculate polygon cartesian coordinates
+http://www.mathopenref.com/coordpolycalc.html
+
+
+
+iconSize = 16 px // (fontAwesome icon, size easily changed by adding size class!)
+left = pos - iconSize/2
+top = pos - iconSize/2
+*/
+/*#photo {
+  left: -8px;
+  top: -24px;
+}
+#audio {
+  left: 11px;
+  top: -14px;
+}
+#draw {
+  left: 4px;
+  top: 8px;
+}
+#video {
+  left: -20px;
+  top: 8px;
+}
+#text {
+  left: -27px;
+  top: -14px;
+}*/
+
+
 .bubble {
   position: absolute;
-  background-color: #A269DB;
-  box-shadow: -2px 2px 5px #555;
+  background-color: white;
+  opacity: 0.4;
+  box-shadow: -2px 2px 5px white;
   overflow: hidden;
   border-radius: 50%;
-  background: radial-gradient(circle at 33% 33%, #5cabff, #000);
+  background: radial-gradient(circle at 33% 33%, white, #000);
 }
 
 .bubble .header {
@@ -82,11 +249,27 @@ html, body { position: fixed; height: 100%; width: 100%; }
 }
 
 #trashcan {
-  position: absolute;
-  bottom: 2px;
-  z-index:100;
+  margin-top: 130%;
+  margin-left: -40%;
+  position: relative;
+/*  bottom: 5px;*/
+  z-index:1000;
+/*  margin-top: 800px;*/
+  /*height: 20px;*/
 }
 
+.logoTitle{
+ margin-top: 135%;
+/* margin-right: -10%;*/
+ z-index:1000;
+}
+
+.puzzle {
+  /*margin-top: 49%;
+  margin-right: 50%;*/
+  position: relative;
+  z-index:1000;
+}
 .link-image {
   max-height: 20px;
   max-width: 20px;
@@ -98,8 +281,27 @@ canvas {
   left: 0;
 }
 
+.copyright {
+  /*margin-top: -3%;
+  margin-left: 80%;*/
+  position: relative;
+  z-index:1000;
+}
+
+.board-footer {
+  position: absolute;
+  /*width : 100%;
+  height: 0;*/
+  z-index: 1000;
+  margin-top: 380px;
+ /*margin-bottom: 300px;*/
+}
+
+.bubble-image {
+  opacity: 100%;
+}
 /*STOP PLAYING MUSIC BUTTON*/
-.stopButton {
+/*.stopButton {
   margin-top: 1%;
   left: 5%;
   height: 5%;
@@ -115,4 +317,4 @@ canvas {
   width: 5%;
   position: absolute;
   z-index: 100;
-}
+}*/

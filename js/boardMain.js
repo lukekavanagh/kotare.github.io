@@ -1,8 +1,3 @@
-var connectionInProgress = false;
-var currentConnection = {
-  startBubbleId: "",
-  endBubbleId: ""
-};
 var mySVG;
 
 $(document).ready(function() {
@@ -21,6 +16,7 @@ function secureMain() {
 
 
  $('.stopButton').on( "click", function() {
+
     var playing = true;
     var music = document.getElementById("Drone");
     if(playing == true){
@@ -37,35 +33,30 @@ function secureMain() {
   });
 
   sphere();
+  nav();
   mySVG = $('body').connect();
 
   board.load();
 
   $("#board").on("click", renderInputOptions);
-  
+
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
   });
 
+  // Persist content changes
+  $('.content').on('click', function (e) {
+    //board.updateBubble(e);
+    console.log("Content: ", e);
+  });
+
   $("#trashcan").droppable({
-    drop: function(event, ui){
+    drop: function(e, ui){
       $(ui.draggable).remove();
-      console.log(ui);
+      board.removeBubble(ui.draggable.context.id);
     }
   });
 
-  // Persist position and size changes after a drag event.
-  $('.bubble').on('dragstop', function (e) {
-    board.updateBubble(e);
-    board.save();
-  });
-
-  // Persist content changes
-  $('.content').on('input cut copy paste', function (e) {
-    board.updateBubble(e);
-    console.log("Content: ", e);
-    board.save();
-  });
 }
 
 function createBubble(e){
