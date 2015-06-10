@@ -5,6 +5,7 @@ Board.prototype.addConnection = function (id) {
     endBubbleId: id
   });
   this.connections.push(c);
+  this.save();
   c.render(mySVG);
 }
 

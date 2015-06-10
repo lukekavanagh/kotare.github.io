@@ -23,10 +23,34 @@ Board.prototype.addBubble = function () {
 Board.prototype.removeBubble = function () {
 }
 
-Board.prototype.updateBubble = function () {
+Board.prototype.updateBubble = function (e, ui) {
+  for (var i = 0; i < this.bubbles.length; i++) {
+    if (e.target.id === this.bubbles[i].bubbleId) {
+      if (ui.position) {
+        // TODO: bubble position might be a bit off?
+        this.bubbles[i].location.top = ui.position.top;
+        this.bubbles[i].location.left = ui.position.left;
+      }
+
+      // Draggable event
+      if (ui.size) {
+        this.bubbles[i].size.width = ui.size.width;
+        this.bubbles[i].size.height = ui.size.height;
+      }
+
+      board.save();
+    }
+  }
 }
 
 Board.prototype.updateContent = function () {
+  for (var i = 0; i < this.bubbles.length; i++) {
+    if (bubble[0].id === this.bubbles[i].bubbleId) {
+      this.bubbles[i].content = bubble.context.innerHTML;
+      board.save();
+      return;
+    }
+  }
 }
 
 //Board.prototype.getBubble = function (id) {
