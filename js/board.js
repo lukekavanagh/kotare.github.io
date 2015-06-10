@@ -59,7 +59,6 @@ var board = (function () {
 
         boardData.bubbles.splice(i, 1);
         save();
-        render();
         return;
       }
     }
@@ -112,7 +111,7 @@ var board = (function () {
     });
     save();
     console.log("Connections: ", boardData.connections);
-    render();
+    renderConnections(fromId, toId, mySVG);
     fromId = null;
   }
 
