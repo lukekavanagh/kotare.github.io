@@ -47,6 +47,8 @@ function renderBubble(bubble) {
     "height": bubble.size.height
   });
 
+  $('.bubble:last .content').append(bubble.content);
+
   // Persist position changes
   $('.bubble:last').draggable({
     handle: ".header",
@@ -61,8 +63,6 @@ function renderBubble(bubble) {
       board.updateBubble (e, ui);
     }
   });
-  $('.bubble:last .content').append(bubble.content);
-
   // Persist content changes
   $('.bubble:last .content').on('blur', function (e) {
     board.updateContent($(e.target).parent());

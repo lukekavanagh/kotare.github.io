@@ -5,75 +5,13 @@ $(document).ready(function() {
 });
 
 function secureMain() {
-  $('#logoutButton').click(function (e) {
-    e.stopImmediatePropagation();
-
-    FB.logout(function (response) {
-      fbUser = null;
-      window.location = '/';
-    });
-  });
-
-
- $('.stopButton').on( "click", function() {
-
-    var playing = true;
-    var music = document.getElementById("Drone");
-    if(playing == true){
-      music.muted = true;
-    };
-  });
-
-  $('.playButton').on( "click", function() {
-    var playing = false;
-    var music = document.getElementById("Drone");
-    if(playing == false){
-      music.muted = false;
-    };
-  });
-
   sphere();
   nav();
   mySVG = $('body').connect();
 
-  board.load();
-
-  $("#board").on("click", renderInputOptions);
-
-  $('#board').on("click", '.bubble', function(e) {
-    e.stopImmediatePropagation();
-  });
-
-  $("#trashcan").droppable({
-    drop: function(e, ui){
-      $(ui.draggable).remove();
-      board.removeBubble(ui.draggable.context.id);
-    }
-  });
-
+  board.load(); 
 }
 
-function createBubble(e){
-  var args = {
-    inputType: e.inputType,
-    id: helper.guid(),
-    sourceUrl: "",
-    location: {
-      left: e.pageX,
-      top: e.pageY
-    }
-  }
-
-  switch(args.inputType){
-    case "image":
-      args.sourceUrl = e.sourceUrl;
-      break;
-  }
-
-  var bubble = new Bubble(args);
-  renderBubble(bubble);
-  board.addBubble(bubble);
-}
 
 function facebookSdk(callback) {
   window.fbAsyncInit = function() {

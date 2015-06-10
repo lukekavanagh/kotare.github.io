@@ -19,6 +19,7 @@ var board = (function () {
           console.log("Payload returning from load(): ", payload);
           $.extend(boardData, payload);
           render();
+          eventHandlers();
         } else {
           // TODO: handle error. Retry?
           console.log("Empty payload in board.load()");
