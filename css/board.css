@@ -197,7 +197,9 @@ top = pos - iconSize/2
   overflow: hidden;
   border-radius: 50%;
   background: radial-gradient(circle at 33% 33%, white, #000);
-  font-family:
+  font-family: 'Dosis', 'Lato', sans-serif;
+  color: black;
+  font-weight: bold;
 }
 
 .bubble .header {
