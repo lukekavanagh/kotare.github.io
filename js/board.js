@@ -73,9 +73,11 @@ var board = (function () {
     console.log(e, ui);
     for (var i = 0; i < boardData.bubbles.length; i++) {
       if (e.target.id === boardData.bubbles[i].bubbleId) {
-        // TODO: bubble position might be a bit off?
-        boardData.bubbles[i].location.top = ui.position.top;
-        boardData.bubbles[i].location.left = ui.position.left;
+        if (ui.position) {
+          // TODO: bubble position might be a bit off?
+          boardData.bubbles[i].location.top = ui.position.top;
+          boardData.bubbles[i].location.left = ui.position.left;
+        }
 
         // Draggable event
         if (ui.size) {
@@ -84,6 +86,16 @@ var board = (function () {
         }
 
         save();
+      }
+    }
+  }
+
+  function updateContent(bubble) {
+    for (var i = 0; i < boardData.bubbles.length; i++) {
+      if (bubble[0].id === boardData.bubbles[i].bubbleId) {
+        boardData.bubbles[i].content = bubble.context.innerHTML;
+        save();
+        return;
       }
     }
   }
@@ -166,6 +178,7 @@ var board = (function () {
     connectionExists: connectionExists,
     removeConnection: removeConnection,
     getConnections: getConnections,
+    updateContent: updateContent,
     from: from,
     last: last
   };
