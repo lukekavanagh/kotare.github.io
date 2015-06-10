@@ -17,7 +17,10 @@ function renderBubble(bubble) {
     "height": bubble.size.height
   });
   $('.bubble:last').draggable({
-    handle: ".header"
+    handle: ".header",
+    stop: function (e, ui) {
+      board.updateBubble(e);
+    }
   });
   $('.bubble:last').resizable();
   $('.bubble:last .content').append(bubble.content);
@@ -28,22 +31,24 @@ function renderBubble(bubble) {
 
   $('.link').click( function(e) {
     e.stopImmediatePropagation();
-    if (!connectionInProgress){
-      currentConnection.startBubbleId = $(this).parent().parent().attr('id');
-      connectionInProgress = true;
-    } else if(connectionRemover(currentConnection.startBubbleId, $(this).parent().parent().attr('id')) == "removed"){
+    var clickedBubble = $(this).parent().parent().attr('id');
+    console.log("From: ", board.from(), " last: ", board.last(), " clicked: ", clickedBubble);
+
+    if (board.connectionExists(clickedBubble, board.last())) {
+      console.log("Board exists...");
+      board.removeConnection(clickedBubble, board.last()); 
       console.log("connection broken");
-      connectionInProgress = false;
-    } else {
-      currentConnection.endBubbleId = $(this).parent().parent().attr('id');
-      renderConnections(currentConnection.startBubbleId, currentConnection.endBubbleId, mySVG);
-      connectionInProgress = false;
-      board.connections.push({
-        startBubbleId: currentConnection.startBubbleId,
-        endBubbleId: currentConnection.endBubbleId
-      });
-      currentConnection.startBubbleId = "";
-      currentConnection.endBubbleId = "";
+    } 
+    
+    else if (board.from()) {
+      console.log("Complete connection...");
+      board.completeConnection(clickedBubble);
+    } 
+    
+    else {
+      console.log("Starting connection...");
+      board.startConnection(clickedBubble);
+      console.log("board.fromId: ", board.from());
     }
   });
 
