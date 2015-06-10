@@ -249,22 +249,26 @@ top = pos - iconSize/2
 }
 
 #trashcan {
-  position: absolute;
+  margin-top: 130%;
+  margin-left: -40%;
+  position: relative;
 /*  bottom: 5px;*/
-  z-index:100;
-  margin-top: 1500px;
-
+  z-index:1000;
+/*  margin-top: 800px;*/
+  /*height: 20px;*/
 }
 
 .logoTitle{
- margin-top: 50%;
- margin-right: -10%;
+ margin-top: 135%;
+/* margin-right: -10%;*/
+ z-index:1000;
 }
 
 .puzzle {
-  margin-top: 49%;
-  margin-right: 50%;
+  /*margin-top: 49%;
+  margin-right: 50%;*/
   position: relative;
+  z-index:1000;
 }
 .link-image {
   max-height: 20px;
@@ -278,22 +282,24 @@ canvas {
 }
 
 .copyright {
-  margin-top: -3%;
-  margin-left: 80%;
-  position: absolute;
-
+  /*margin-top: -3%;
+  margin-left: 80%;*/
+  position: relative;
+  z-index:1000;
 }
 
-
-footer {
+.board-footer {
   position: absolute;
-  width : 100%;
-  height: 100%;
-  margin-top: -3px;
-
-
+  /*width : 100%;
+  height: 0;*/
+  z-index: 1000;
+  margin-top: 380px;
+ /*margin-bottom: 300px;*/
 }
 
+.bubble-image {
+  opacity: 100%;
+}
 /*STOP PLAYING MUSIC BUTTON*/
 /*.stopButton {
   margin-top: 1%;
