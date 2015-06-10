@@ -139,6 +139,7 @@ function renderInputOptions(e) {
   $inputOptionBox.show()
 
   $textOption.on('click', function(e){
+    console.log("TEXT");
     e.stopImmediatePropagation();
     $inputOptionBox.hide()
     e.inputType = "text";
