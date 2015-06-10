@@ -44,12 +44,6 @@ function secureMain() {
     e.stopImmediatePropagation();
   });
 
-  // Persist content changes
-  $('.content').on('click', function (e) {
-    //board.updateBubble(e);
-    console.log("Content: ", e);
-  });
-
   $("#trashcan").droppable({
     drop: function(e, ui){
       $(ui.draggable).remove();

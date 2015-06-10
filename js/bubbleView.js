@@ -142,7 +142,7 @@ function renderInputOptions(e) {
     e.stopImmediatePropagation();
     $inputOptionBox.hide()
     e.inputType = "text";
-    createBubble(e)
+    createBubble(e);
   });
 
   $imageOption.on('click', function(e) {
