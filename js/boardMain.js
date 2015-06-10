@@ -44,6 +44,12 @@ function secureMain() {
     e.stopImmediatePropagation();
   });
 
+  // Persist content changes
+  $('.content').on('click', function (e) {
+    //board.updateBubble(e);
+    console.log("Content: ", e);
+  });
+
   $("#trashcan").droppable({
     drop: function(e, ui){
       $(ui.draggable).remove();
@@ -51,12 +57,6 @@ function secureMain() {
     }
   });
 
-  // Persist content changes
-  $('.content').on('input cut copy paste', function (e) {
-    board.updateBubble(e);
-    console.log("Content: ", e);
-    board.save();
-  });
 }
 
 function createBubble(e){

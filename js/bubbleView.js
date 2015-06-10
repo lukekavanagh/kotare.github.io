@@ -46,18 +46,27 @@ function renderBubble(bubble) {
     "width": bubble.size.width,
     "height": bubble.size.height
   });
+
+  // Persist position changes
   $('.bubble:last').draggable({
     handle: ".header",
     stop: function (e, ui) {
       board.updateBubble(e, ui);
     }
   });
+
+  // Persist size changes
   $('.bubble:last').resizable({
     stop: function (e, ui) {
       board.updateBubble (e, ui);
     }
   });
   $('.bubble:last .content').append(bubble.content);
+
+  // Persist content changes
+  $('.bubble:last .content').on('blur', function (e) {
+    board.updateContent($(e.target).parent());
+  });
 
   $('.header').click( function(e) {
     $(window).resize();
