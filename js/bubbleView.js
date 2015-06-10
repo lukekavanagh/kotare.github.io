@@ -9,11 +9,20 @@ function renderBubble(bubble) {
     top: bubble.location.top,
     left: bubble.location.left
   });
-  console.log(bubble);
+
+  var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
+
   switch(bubble.type) {
     case "text":
+      $content = $("<div class='content' contentEditable='true'>"+bubble.content+"</div>")
+      borderSizeStopOverflowTop = paddingPercent + 15
+      borderSizeStopOverflowBottom = paddingPercent + 5
+      $content.css({
+        'border-top': borderSizeStopOverflowTop + 'px solid transparent',
+        'border-bottom': borderSizeStopOverflowBottom + 'px solid transparent'
+      })
+      $(".bubble:last").append($content);
       $(".bubble:last").append(
-        "<div class='content' contentEditable='true'>"+bubble.content+"</div>"+
         "<div class='footer'>" +
           "<a class='scrollUp' href='#'> &#9650 </a>" +
           "<a class='scrollDown' href='#'> &#9660 </a>" +
@@ -21,7 +30,6 @@ function renderBubble(bubble) {
       );
       break;
     case "image":
-      console.log('in image rendering ***************');
       $content = $('<div class="content"></div>')
       $image = $('<img src="'+bubble.sourceUrl+'"></img>')
       $image.css({
@@ -32,7 +40,6 @@ function renderBubble(bubble) {
       $(".bubble:last").append($content);
       break;
   }
-  var paddingPercent = 50*(1 - Math.cos(Math.PI/4))
   $(".bubble:last .content").css({'padding': paddingPercent + '%'})
 
   $(".bubble:last").css({
@@ -99,7 +106,7 @@ function renderInputOptions(e) {
     $inputOptionBox.append($audioOption);
     $inputOptionBox.append($videoOption);
     $inputOptionBox.append($imageOption);
-    $photoOption.append($magicCameraInput);
+    // $photoOption.append($magicCameraInput);
     $photoOption.append("<img id='yourimage'>");
     $('#board').append($inputOptionBox);
   } else {
@@ -146,6 +153,7 @@ function renderInputOptions(e) {
     $imageOption
   ]
   animateOptions(options);
+  $('.fa').addClass('fa-2x') //fa-2x/3x/4x/5x
 }
 
 function showAddUrlForm(e) {
@@ -182,6 +190,7 @@ function addUrlToModel(e) {
 function animateOptions(options) {
   resetOptionPosition(options)
   var iconSize = 16; // px
+  var scale = 2.5
   // http://www.mathopenref.com/coordpolycalc.html for cartesian polygon coords below
   var finalCentrePositions = [
     [0,   -20],
@@ -192,7 +201,7 @@ function animateOptions(options) {
   ]
   var finalTopLeftCoords = finalCentrePositions.map(function(el) {
     return el.map(function(coord) {
-      return coord - iconSize/2
+      return (coord - iconSize/2) * scale
     });
   });
   for (var i = 0; i < finalTopLeftCoords.length; i++) {

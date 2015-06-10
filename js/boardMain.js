@@ -42,6 +42,7 @@ function secureMain() {
   board.load();
 
   $("#board").on("click", renderInputOptions);
+  
   $('#board').on("click", '.bubble', function(e) {
     e.stopImmediatePropagation();
   });
