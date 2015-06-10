@@ -43,7 +43,8 @@ Board.prototype.updateBubble = function (e, ui) {
   }
 }
 
-Board.prototype.updateContent = function () {
+Board.prototype.updateContent = function (bubble) {
+  console.log(bubble);
   for (var i = 0; i < this.bubbles.length; i++) {
     if (bubble[0].id === this.bubbles[i].bubbleId) {
       this.bubbles[i].content = bubble.context.innerHTML;

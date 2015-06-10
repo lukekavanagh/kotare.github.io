@@ -70,7 +70,6 @@ var board = (function () {
   }
 
   function updateBubble(e, ui) {
-    console.log(e, ui);
     for (var i = 0; i < boardData.bubbles.length; i++) {
       if (e.target.id === boardData.bubbles[i].bubbleId) {
         if (ui.position) {

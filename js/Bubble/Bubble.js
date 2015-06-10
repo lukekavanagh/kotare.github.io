@@ -3,30 +3,32 @@ function Bubble (){ }
 Bubble.prototype.render = function() {
   var $board = $('#board');
 
-  var $bubble = $('<div>').attr({
-    id: this.bubbleId,
-    class: 'bubble'
-  }).offset({
-    top: this.location.top,
-    left: this.location.left
-  }).css({
-    'width': this.size.width,
-    'height': this.size.height
-  }).draggable({
-    handle: ".header",
-    stop: function (e, ui) {
-      // Persist position changes
-      board.updateBubble(e, ui);
-    }
-  }).resizable({
-    stop: function (e, ui) {
-      // Persist size changes
-      board.updateBubble (e, ui);
-    }
-  }).on('blur', function (e) {
-    // Persist content changes
-    board.updateContent($(e.target).parent());
-  });
+  var $bubble = $('<div>')
+    .attr({
+      id: this.bubbleId,
+      class: 'bubble'
+    })
+    .offset({
+      top: this.location.top,
+      left: this.location.left
+    })
+    .css({
+      'width': this.size.width,
+      'height': this.size.height
+    })
+    .draggable({
+      handle: ".header",
+      stop: function (e, ui) {
+        // Persist position changes
+        board.updateBubble(e, ui);
+      }
+    })
+    .resizable({
+      stop: function (e, ui) {
+        // Persist size changes
+        board.updateBubble (e, ui);
+      }
+    });
 
   this.populate($bubble);
   $board.append($bubble);
@@ -52,7 +54,7 @@ Bubble.prototype.populate = function ($bubble) {
   );
 
   $bubble
-    .on('click', $link, function () {
+    .on('click', $link, function (e) {
       // For clarity: 'this' is the bubble div
       self.connect(this.id);
     }
@@ -66,8 +68,15 @@ Bubble.prototype.populate = function ($bubble) {
     })
     .css({
       padding: paddingPercent + '%'
-    }
-  );
+    })
+    .on('click', function (e) {
+      e.stopImmediatePropagation();
+    })
+    .on('blur', function (e) {
+      // Persist content changes
+      e.stopImmediatePropagation();
+      board.updateContent($(e.target).parent());
+    });
 
   var $footer = $('<div>').attr({ class: 'footer' });
 
