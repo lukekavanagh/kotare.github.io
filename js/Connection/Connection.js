@@ -1,5 +1,8 @@
-function Connection () {
-  this.firstBubbleId = "";
-  this.secondBubbleId = "";
-  this.inProgress = false;
+function Connection () {}
+
+Connection.prototype.render = function (svg) {
+  svg.drawLine({
+    left_node: '#' + this.startBubbleId,
+    right_node: '#' + this.endBubbleId
+  });
 }

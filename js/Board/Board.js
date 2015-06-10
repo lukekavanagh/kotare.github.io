@@ -47,7 +47,7 @@ Board.prototype.render = function () {
   }
   if (this.connections) {
     for (var i = 0; i < this.connections.length; i++) {
-      renderConnections(this.connections[i].startBubbleId, this.connections[i].endBubbleId, mySVG);
+      this.connections[i].render(mySVG);
     }
   }
 }
