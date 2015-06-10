@@ -1,7 +1,4 @@
-function Board() {
-  this.from;
-  this.last;
-}
+function Board() {} 
 
 Board.prototype.save = function () {
   ApiFacade.putBoard(this, function (payload) {
@@ -18,9 +15,22 @@ Board.prototype.loadCallback = function (payload) {
   if (payload) {
     console.log("Payload returning from load(): ", payload);
 
+    // Add methods to models
     $.extend(this, payload);
 
-    console.log(this);
+    if (this.bubbles) {
+      for (var i = 0; i < this.bubbles.length; i++) {
+        var bubble = new Bubble();
+        $.extend(this.bubbles[i], bubble);
+      }
+    }
+    if (this.connections) {
+      for (var i = 0; i < this.connections.length; i++) {
+        var connection = new Connection();
+        $.extend(this.connections[i], connection);
+      }
+    }
+
     this.render();
     eventHandlers();
   } else {
@@ -32,7 +42,7 @@ Board.prototype.loadCallback = function (payload) {
 Board.prototype.render = function () {
   if (this.bubbles) {
     for (var i = 0; i < this.bubbles.length; i++) {
-      renderBubble(this.bubbles[i]);
+      this.bubbles[i].render();
     }
   }
   if (this.connections) {
