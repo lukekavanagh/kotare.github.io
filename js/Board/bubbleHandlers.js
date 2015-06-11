@@ -1,6 +1,7 @@
 Board.prototype.addBubble = function (e) {
   var bubble = new Bubble();
   $.extend(bubble, {
+    bubbleId: guid(),
     location: {
       left: e.pageX,
       top: e.pageY

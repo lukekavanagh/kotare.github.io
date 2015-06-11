@@ -3,6 +3,7 @@ function Bubble (){ }
 Bubble.prototype.render = function() {
   var $board = $('#board');
 
+  console.log(this);
   var $bubble = $('<div>')
     .attr({
       id: this.bubbleId,
@@ -57,6 +58,7 @@ Bubble.prototype.populate = function ($bubble) {
   $bubble
     .on('click', $link, function (e) {
       // For clarity: 'this' is the bubble div
+      e.stopImmediatePropagation();
       self.connect(this.id);
     }
   );
@@ -138,12 +140,3 @@ Bubble.prototype.specialise = function ($content, paddingPercent) {
   }
 }
 
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
-}
