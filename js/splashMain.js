@@ -1,28 +1,9 @@
 $(document).ready(function(){
-	facebookSdk(main);
-});
-
-function main() {
-	$('#boardLink').click(function (e) {
-    e.stopImmediatePropagation();
-    console.log(fbUser);
-    if (!fbUser) {
-      FB.login(function (response) {
-        setUser(response);
-        if (fbUser.access_token) {
-          window.location = "/views/board.html";
-        }
-      }, {
-        scope: 'public_profile,email'
-      });
-    }
-  });
-
+	facebookSdk(loginLink);
   sphere();
   nav();
 
   $("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering();
-
 
   $('.stopButton').on( "click", function() {
       var playing = true;
@@ -37,5 +18,22 @@ function main() {
       if(playing == false){
       music.muted = false;
       };
+  });
+});
+
+function loginLink() {
+	$('#boardLink').click(function (e) {
+    e.stopImmediatePropagation();
+    console.log(fbUser);
+    if (!fbUser) {
+      FB.login(function (response) {
+        setUser(response);
+        if (fbUser.access_token) {
+          window.location = "/views/board.html";
+        }
+      }, {
+        scope: 'public_profile,email'
+      });
+    }
   });
 }
