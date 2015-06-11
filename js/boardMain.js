@@ -2,7 +2,7 @@ var mySVG;
 board = new Board();
 
 $(document).ready(function() {
-  facebookSdk(secureMain);
+  facebookSdk(secureMain, true);
 });
 
 function secureMain() {

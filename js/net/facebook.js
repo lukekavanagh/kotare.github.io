@@ -14,7 +14,7 @@ function setUser(response) {
   });
 }
 
-function facebookSdk(callback) {
+function facebookSdk(callback, redirect) {
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1642565209312684',  // Inkling (PRODUCTION)
@@ -26,10 +26,12 @@ function facebookSdk(callback) {
 
     FB.getLoginStatus(function(response) {
       setUser(response);
-      if (!fbUser) {
-        window.location.replace('/');
-      } else {
-        callback();
+      if (redirect) {
+        if (!fbUser) {
+          window.location.replace('/');
+        } else {
+          callback();
+        }
       }
     });
   };
