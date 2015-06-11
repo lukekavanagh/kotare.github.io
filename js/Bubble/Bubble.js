@@ -14,7 +14,8 @@ Bubble.prototype.render = function() {
     })
     .css({
       'width': this.size.width,
-      'height': this.size.height
+      'height': this.size.height,
+      'position': 'absolute'
     })
     .draggable({
       handle: ".header",
