@@ -428,16 +428,3 @@ input[value="on"]:checked ~ .lamp:before {
 }
 body {background:#2f323c;}
 
-/*COPYRIGHT*/
-.copyright {
-  margin-top: -3%;
-  margin-left: 80%;
-  position: absolute;
-}
-
-footer {
-  position: absolute;
-  width : 100%;
-  height: 100%;
-  margin-top: 1200px;
-}
