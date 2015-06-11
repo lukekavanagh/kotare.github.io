@@ -7,7 +7,7 @@ var ApiFacade = (function() {
   //var BACKEND_BASE_URI = 'http://crudbrain.herokuapp.com/api/v1';
 
   // PRODUCTION
-  var BACKEND_BASE_URI = '//crudbrain.inkling.space/api/v1';
+  var BACKEND_BASE_URI = 'https://crudbrain.inkling.space/api/v1';
 
   function getBoard (boardId, callback) {
     $.ajax({
