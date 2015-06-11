@@ -55,10 +55,10 @@ function renderInputOptions(e) {
     showAddUrlForm(e)
   })
 
-  $photoOption.on('click', function(e) {
-    e.stopImmediatePropagation()
-    $inputOptionBox.hide()
-  })
+  //$photoOption.on('click', function(e) {
+    //e.stopImmediatePropagation()
+    //$inputOptionBox.hide()
+  //})
 
 }
 
@@ -66,7 +66,7 @@ function showAddUrlForm(e) {
   e.stopImmediatePropagation()
   $form = $(
     '<form id="imageUrl">' +
-      '<input type="text" id="sourceUrl" placeholder="image url here pal">' +
+      '<input type="text" id="sourceUrl" style="color:black" placeholder="image url here pal">' +
       '<input type="submit" value="yep">' +
     '</form>'
   );
@@ -77,7 +77,6 @@ function showAddUrlForm(e) {
   });
   $('#board').append($form);
   $('#sourceUrl').focus();
-  console.log($form);
   $form.submit(function(eSubmit){
     eSubmit.preventDefault();
     addUrlToModel(e);
@@ -90,7 +89,7 @@ function addUrlToModel(e) {
   e.sourceUrl = $('#sourceUrl').val();
   console.log(e.sourceUrl);
   console.log(e.inputType);
-  createBubble(e);
+  board.addBubble(e);
 }
 
 function animateOptions(options) {
