@@ -24,7 +24,6 @@ $(document).ready(function(){
 function loginLink() {
 	$('#boardLink').click(function (e) {
     e.stopImmediatePropagation();
-    console.log(fbUser);
     if (!fbUser) {
       FB.login(function (response) {
         setUser(response);
