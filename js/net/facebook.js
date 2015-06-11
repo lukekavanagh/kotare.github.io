@@ -26,12 +26,13 @@ function facebookSdk(callback, redirect) {
 
     FB.getLoginStatus(function(response) {
       setUser(response);
-      if (redirect) {
-        if (!fbUser) {
+
+      if (!fbUser) {
+        if (redirect) {
           window.location.replace('/');
-        } else {
-          callback();
         }
+      } else {
+        callback();
       }
     });
   };
