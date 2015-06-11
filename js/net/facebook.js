@@ -27,10 +27,8 @@ function facebookSdk(callback, redirect) {
     FB.getLoginStatus(function(response) {
       setUser(response);
 
-      if (!fbUser) {
-        if (redirect) {
-          window.location.replace('/');
-        }
+      if (!fbUser && redirect) {
+        window.location.replace('/');
       } else {
         callback();
       }
