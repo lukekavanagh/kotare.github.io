@@ -1,6 +1,8 @@
 $(document).ready(function(){
-	facebookSdk();
+	facebookSdk(main);
+});
 
+function main() {
 	$('#boardLink').click(function (e) {
     e.stopImmediatePropagation();
     console.log(fbUser);
@@ -36,6 +38,4 @@ $(document).ready(function(){
       music.muted = false;
       };
   });
-
-});
-
+}

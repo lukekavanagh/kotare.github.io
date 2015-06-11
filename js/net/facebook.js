@@ -26,8 +26,8 @@ function facebookSdk(callback) {
 
     FB.getLoginStatus(function(response) {
       setUser(response);
-      if (!fbUser) {
-        window.location = "/";
+      if (!fbUser && window.location !== '/') {
+        window.location = '/';
       } else {
         callback();
       }
