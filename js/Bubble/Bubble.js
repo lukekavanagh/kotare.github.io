@@ -20,12 +20,14 @@ Bubble.prototype.render = function() {
     .draggable({
       handle: ".header",
       stop: function (e, ui) {
+        e.stopImmediatePropagation();
         // Persist position changes
         board.updateBubble(e, ui);
       }
     })
     .resizable({
       stop: function (e, ui) {
+        e.stopImmediatePropagation();
         // Persist size changes
         board.updateBubble (e, ui);
       }

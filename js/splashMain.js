@@ -1,23 +1,18 @@
 $(document).ready(function(){
   facebookSdk(loginLink);
+
   sphere();
   nav();
-
   $("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering();
 
   $('.stopButton').on( "click", function() {
-      var playing = true;
-      var music = document.getElementById("Drone");
-      if(playing == true){
-      music.muted = true;
-      };
+    $('#Drone').trigger('pause');
   });
+
   $('.playButton').on( "click", function() {
-      var playing = false;
-      var music = document.getElementById("Drone");
-      if(playing == false){
-      music.muted = false;
-      };
+    $('#Drone')
+      .attr('loop', 'true')
+      .trigger('play');
   });
 });
 

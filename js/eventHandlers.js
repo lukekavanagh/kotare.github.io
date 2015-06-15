@@ -2,9 +2,11 @@
 function eventHandlers() {
   $("#trashcan").droppable({
     drop: function(e, ui){
+      e.stopImmediatePropagation();
       $(ui.draggable).remove();
       board.removeBubble(ui.draggable.context.id);
-    }
+    },
+    tolerance: 'touch'
   });
 
   $('#logoutButton').click(function (e) {
@@ -16,22 +18,5 @@ function eventHandlers() {
     });
   });
 
-
- $('.stopButton').on( "click", function() {
-    var playing = true;
-    var music = document.getElementById("Drone");
-    if(playing == true){
-      music.muted = true;
-    };
-  });
-
-  $('.playButton').on( "click", function() {
-    var playing = false;
-    var music = document.getElementById("Drone");
-    if(playing == false){
-      music.muted = false;
-    };
-  });
-
-  $("#board").on("click", renderInputOptions);
+  $('#board').on('click', renderInputOptions);
 }

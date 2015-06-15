@@ -1,13 +1,4 @@
 var ApiFacade = (function() {
-
-  // DEVELOPMENT (Rich's laptop)
-  //var BACKEND_BASE_URI = 'http://localhost:5000/api/v1';
-  
-  // DEVELOPMENT (isolated kotare.github.io backend)
-  //var BACKEND_BASE_URI = 'http://crudbrain.herokuapp.com/api/v1';
-
-  // PRODUCTION
-  //var BACKEND_BASE_URI = 'https://crudbrain.inkling.space/api/v1';
   var BACKEND_BASE_URI = 'https://crudbrain.herokuapp.com/api/v1';
 
   function getBoard (boardId, callback) {

@@ -20,39 +20,6 @@
   position: absolute;
 }
 
-
-/*
-calculate polygon cartesian coordinates
-http://www.mathopenref.com/coordpolycalc.html
-
-
-
-iconSize = 16 px // (fontAwesome icon, size easily changed by adding size class!)
-left = pos - iconSize/2
-top = pos - iconSize/2
-*/
-/*#photo {
-  left: -8px;
-  top: -24px;
-}
-#audio {
-  left: 11px;
-  top: -14px;
-}
-#draw {
-  left: 4px;
-  top: 8px;
-}
-#video {
-  left: -20px;
-  top: 8px;
-}
-#text {
-  left: -27px;
-  top: -14px;
-}*/
-
-
 .bubble {
   position: absolute;
   background-color: white;
@@ -144,10 +111,26 @@ canvas {
   left: 92%;
 }
 
+h3 {
+  font-family: 'Dosis', 'Lato', sans-serif;
+  font-size: 20px;
+  overflow: hidden;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  letter-spacing: 14px;
+  text-align: center;
+/*  margin-top: 550px;
+  margin-left: -400px;*/
+}
+
 .logoTitle{
   z-index: 101;
   position: absolute;
-  top: 92%;
+  top: 93%;
   left: 1%;
 }
 
@@ -162,6 +145,4 @@ canvas {
 .bubble-image {
   opacity: 100%;
 }
-
-
 
