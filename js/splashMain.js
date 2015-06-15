@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	facebookSdk(loginLink);
+  facebookSdk(loginLink);
   sphere();
   nav();
 
@@ -22,6 +22,7 @@ $(document).ready(function(){
 });
 
 function loginLink() {
+    console.log("loginLink");
 	$('#boardLink').click(function (e) {
     e.stopImmediatePropagation();
     if (!fbUser) {
