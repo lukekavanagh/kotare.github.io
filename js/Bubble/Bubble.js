@@ -3,7 +3,6 @@ function Bubble (){ }
 Bubble.prototype.render = function() {
   var $board = $('#board');
 
-  console.log(this);
   var $bubble = $('<div>')
     .attr({
       id: this.bubbleId,

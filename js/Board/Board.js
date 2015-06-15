@@ -3,7 +3,6 @@ function Board() {}
 Board.prototype.save = function () {
   ApiFacade.putBoard(this, function (payload) {
     // TODO: use response here in some fashion? Error handling?
-    console.log("Payload returning from save(): ", payload);
   });
 }
 
@@ -13,8 +12,6 @@ Board.prototype.load = function () {
 
 Board.prototype.loadCallback = function (payload) {
   if (payload) {
-    console.log("Payload returning from load(): ", payload);
-
     // Add methods to models
     $.extend(this, payload);
 
@@ -42,7 +39,6 @@ Board.prototype.loadCallback = function (payload) {
     eventHandlers();
   } else {
     // TODO: handle error. Retry?
-    console.log("Empty payload in board.load()");
   }
 }
 
