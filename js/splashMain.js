@@ -22,20 +22,26 @@ $(document).ready(function(){
 });
 
 function loginLink() {
-	$('#boardLink').on('click', function (e) {
-      console.log('#boardlink');
-      e.stopImmediatePropagation();
-      if (!fbUser) {
-        console.log('No current FB user');
-        FB.login(function (response) {
-          setUser(response);
-          if (fbUser.access_token) {
-            window.location = "/views/board.html";
-          } else {
-            console.log('No token.');
-          }
-        }, {
-        scope: 'public_profile,email'
+  if (fbUser.access_token) {
+    window.location = "/views/board.html";
+  }
+
+  console.log('FB callback');
+  $('#boardLink').on('click', function (e) {
+    console.log('#boardlink');
+    //e.stopImmediatePropagation();
+    if (!fbUser) {
+      console.log('No current FB user');
+
+      FB.login(function (response) {
+        setUser(response);
+        if (fbUser.access_token) {
+          window.location = "/views/board.html";
+        } else {
+          console.log('No token.');
+        }
+      }, { 
+        scope: 'public_profile,email' 
       });
     }
   });
