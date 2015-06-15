@@ -22,7 +22,7 @@ $(document).ready(function(){
 });
 
 function loginLink() {
-    console.log("loginLink");
+    console.log("FB: ", fbUser, fbUser.access_token);
 	$('#boardLink').click(function (e) {
     e.stopImmediatePropagation();
     if (!fbUser) {
