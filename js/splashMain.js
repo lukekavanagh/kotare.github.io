@@ -22,7 +22,7 @@ $(document).ready(function(){
 });
 
 function loginLink() {
-	$('#boardLink').click(function (e) {
+	$('#boardLink').on('click', function (e) {
       console.log('#boardlink');
       e.stopImmediatePropagation();
       if (!fbUser) {
