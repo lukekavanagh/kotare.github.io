@@ -1,6 +1,7 @@
 var fbUser;
 
 function setUser(response) {
+  console.log('setUser: ', response.authResponse.accessToken);
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
 

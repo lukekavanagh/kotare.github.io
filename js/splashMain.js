@@ -22,16 +22,19 @@ $(document).ready(function(){
 });
 
 function loginLink() {
-    console.log("FB: ", fbUser, fbUser.access_token);
 	$('#boardLink').click(function (e) {
-    e.stopImmediatePropagation();
-    if (!fbUser) {
-      FB.login(function (response) {
-        setUser(response);
-        if (fbUser.access_token) {
-          window.location = "/views/board.html";
-        }
-      }, {
+      console.log('#boardlink');
+      e.stopImmediatePropagation();
+      if (!fbUser) {
+        console.log('No current FB user');
+        FB.login(function (response) {
+          setUser(response);
+          if (fbUser.access_token) {
+            window.location = "/views/board.html";
+          } else {
+            console.log('No token.');
+          }
+        }, {
         scope: 'public_profile,email'
       });
     }
