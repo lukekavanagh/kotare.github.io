@@ -7,6 +7,8 @@ Inkling on the Web -  https://inkling.space
 #Synopsis
 The flash of inspiration can strike at any time, but when it does, a creative person needs a medium to record the idea. Inkling is that medium.
 
+Users can store ideas and thoughts in text or image form in persistent Bubbles.
+
 My responsibilities as part of this Agile Team were the Front End, and Jasmine Testing working with another Junior Dev.
 
 #Technologies used for the Front End Include:
